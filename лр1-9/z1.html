@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВАРИАНТ 5 - БУРГЕР</title>
+    <link rel="icon" href="сайт/imagess/icon.png" type="image/png">
+    <!-- Подключение внешнего файла стилей из папки сайт -->
+    <link rel="stylesheet" href="сайт/z1_style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <a href="#" class="logo">ВАРИАНТ 5</a>
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="#main-content">Главная</a></li>
+                <li><a href="#brawl-pass">Brawl Pass</a></li>
+                <li><a href="#media-content">Медиа</a></li>
+                <li><a href="#currencies-content">Валюты</a></li>
+                <li><a href="#starr-content">Призы Старр</a></li>
+                <li><a href="#js-lab-anchor">Лаборатория JS</a></li>
+                <li><a href="#product-content">Растение</a></li>
+                <li><a href="#hosting-content">Хостинг</a></li>
+            </ul>
+        </nav>
+        <button class="burger" id="burgerBtn" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="container">
+        
+        <!-- БЛОК 1: Brawl Pass (bp.html) -->
+        <div class="box b1" id="brawl-pass">
+            <h1>Brawl Pass</h1>
+            <p>
+                Brawl Pass — интерпретация популярной концепции Battle Pass. Она подразумевает получение различных наград за выполнение заданий, а за денежную плату к общим наградам добавляются дополнительные бонусы.
+            </p>
+            <p>В Brawl Pass можно получить:</p>
+            <ul style="padding-left: 20px;">
+                <li>Кристаллы</li>
+                <li>Пины</li>
+                <li>Уникальные скины</li>
+                <li>Призы Старр</li>
+                <li>Кредиты</li>
+                <li>Титулы</li>
+                <li>Блинги</li>
+                <li>Иконки игрока</li>
+                <li>Спреи</li>
+            </ul>
+            <p>Пример пропуска:</p>
+            <img src="сайт/imagess/bp.png" alt="Brawl Pass">
+        </div>
+
+        <!-- БЛОК 4: Главная страница (main.html) + JS Лаборатория + Форма хостинга -->
+        <div class="box b4" id="main-content">
+            <h1 id="main-title" style="font-family: 'myfont', sans-serif; color: #6c5ce7; font-size: 28px;">Brawl Stars</h1>
+            <p>
+                Brawl Stars, созданная финской компанией <a href="https://ru.wikipedia.org/wiki/Supercell" target="_blank">Supercell</a>, является крайне популярной игрой в наше время. Компания-разработчик имеет за своими плечами не одну популярную мобильную игру. Пример — ставшие легендарными Clash of Clans и Clash Royale.
+            </p>
+            <p>
+                Игра была запущена в бета-тестирование в 2017 году, а уже 12 декабря 2018 года вышла в глобальный релиз. Начиная с 2019 проект набирал популярность с переменным успехом, чтобы прийти к статусу одной из самых популярных мобильных игр за все время.
+            </p>
+            <p>
+                На данный момент в игре доступно огромное количество контента: почти 100 персонажей, большое количество наград на выполнение заданий Brawl Pass, коллаборации с другими проектами и прочее. На этом сайте представлена краткая информация обо всех важных деталях игры.
+            </p>
+
+            <h2>Игровые валюты</h2>
+            <p>
+                Всего в игре присутствует пять валют. С помощью них можно купить скины, звёздные силы и гаджеты, специальные акции, прочие визуальные атрибуты.
+            </p>
+            <p>
+                До недавнего времени так же было возможно купить премиальный Brawl Pass за кристаллы, но теперь это можно сделать только за реальные деньги.
+            </p>
+
+            <h2>Призы Старр</h2>
+            <p>
+                Механика, случайным образом выдающая одну из возможных наград. С помощью неё можно получить массу ценных наград.
+            </p>
+
+            <form action="#" method="POST" style="margin-top: 25px;">
+                <fieldset style="border: 1px solid #cbd5e0; border-radius: 8px; padding: 15px;">
+                    <legend style="padding: 0 10px; font-weight: bold; color: #6c5ce7;">Регистрация для комментариев</legend>
+                    <p style="margin: 0 0 10px 0;">
+                        <label for="login" style="display:block; margin-bottom: 5px;">Логин:</label>
+                        <input type="text" id="login" name="login" style="width: 100%;" required>
+                    </p>
+                    <p style="margin: 0 0 15px 0;">
+                        <label for="password" style="display:block; margin-bottom: 5px;">Пароль:</label>
+                        <input type="password" id="password" name="password" style="width: 100%;" required>
+                    </p>
+                    <p style="margin: 0;">
+                        <button type="submit" style="width: 100%;">Зарегистрироваться</button>
+                    </p>
+                </fieldset>
+            </form>
+
+            <!-- ИНТЕРАКТИВНЫЙ БЛОК: ЛАБОРАТОРИЯ JS -->
+            <div class="js-lab-container" id="js-lab-anchor">
+                <div class="js-lab-title">Интерактивная Лаборатория JavaScript</div>
+                
+                <!-- 1. Способы внедрения JS -->
+                <div class="js-section-title">1. Способы внедрения JS в HTML</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                    <button class="js-btn" onclick="alert('Выполнен Способ 1: Инлайн-событие directly в HTML-атрибуте onclick!')">Способ 1 (Инлайн)</button>
+                    <button class="js-btn" onclick="runInternalScriptDemo()">Способ 2 (Внутренний тег)</button>
+                    <button class="js-btn" id="externalSimBtn">Способ 3 (Внешний файл)</button>
+                    <a href="javascript:alert('Выполнен Способ 4: Вызов JS через протокол javascript: в атрибуте href ссылки!')" class="js-btn" style="text-decoration: none; display: inline-flex; align-items: center;">Способ 4 (href="javascript:")</a>
+                </div>
+
+                <!-- 2. Диалоговые окна -->
+                <div class="js-section-title">2. Диалоговые окна (window-методы)</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                    <button class="js-btn" onclick="triggerAlert()">Вызов alert()</button>
+                    <button class="js-btn" onclick="triggerConfirm()">Вызов confirm()</button>
+                    <button class="js-btn" onclick="triggerPrompt()">Вызов prompt()</button>
+                </div>
+                <div id="dialog-log" class="js-output">Результаты диалоговых окон будут выводиться здесь...</div>
+
+                <!-- 3. Операторы JS (Условия) -->
+                <div class="js-section-title">3. Условия (if-else, switch)</div>
+                <div class="js-grid-inputs">
+                    <div>
+                        <label style="font-size: 11px; display:block;">Часы (0-23) [Оператор if]:</label>
+                        <input type="text" id="ifHours" value="9" style="width: 100px; padding: 4px; font-size: 12px;">
+                        <button class="js-btn" style="margin-top: 5px;" onclick="runIfDemo()">Тест if-else</button>
+                    </div>
+                    <div>
+                        <label style="font-size: 11px; display:block;">День недели (0-6) [switch]:</label>
+                        <select id="switchDay" style="padding: 4px; font-size: 12px; width: 100%;">
+                            <option value="1">1 (Понедельник)</option>
+                            <option value="5">5 (Пятница)</option>
+                            <option value="6">6 (Суббота)</option>
+                            <option value="0">0 (Воскресенье)</option>
+                        </select>
+                        <button class="js-btn" style="margin-top: 5px;" onclick="runSwitchDemo()">Тест switch</button>
+                    </div>
+                </div>
+                <div id="conditions-output" class="js-output">Результат условий...</div>
+
+                <!-- 4. Циклы и переходы -->
+                <div class="js-section-title">4. Циклы и прерывания (for, while, do..while, break, continue)</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                    <button class="js-btn" onclick="runForLoop()">Тест for (до 5)</button>
+                    <button class="js-btn" onclick="runWhileLoop()">Тест while (до 5)</button>
+                    <button class="js-btn" onclick="runDoWhileLoop()">Тест do..while</button>
+                    <button class="js-btn" onclick="runBreakDemo()">Тест break (до 5)</button>
+                    <button class="js-btn" onclick="runContinueDemo()">Тест continue (пропуск 3, 10, 13)</button>
+                </div>
+                <div id="loops-output" class="js-output">Результаты циклов...</div>
+
+                <!-- 5. Функции и return -->
+                <div class="js-section-title">5. Функции и возврат значения (return)</div>
+                <div class="js-grid-inputs" style="align-items: center;">
+                    <div style="display: flex; gap: 5px; align-items: center;">
+                        <input type="text" id="valA" value="4" style="width: 50px; text-align: center; padding: 4px; font-size: 12px;">
+                        <span>×</span>
+                        <input type="text" id="valB" value="3" style="width: 50px; text-align: center; padding: 4px; font-size: 12px;">
+                    </div>
+                    <button class="js-btn" onclick="runReturnDemo()">Вычислить (a * b)</button>
+                </div>
+                <div id="return-output" class="js-output">Произведение чисел...</div>
+            </div>
+
+            <!-- ФОРМА ЗАКАЗА ВИРТУАЛЬНОГО ХОСТИНГА -->
+            <div class="hosting-form-container" id="hosting-content">
+                <div class="hosting-form-title">Форма заказа виртуального хостинга</div>
+                <form action="#" method="POST">
+                    
+                    <div class="hosting-section-title">Тарифный план</div>
+                    
+                    <div class="hosting-field-row">
+                        <label for="hosting-plan">Тарифный план:</label>
+                        <select id="hosting-plan" name="hosting-plan">
+                            <option value="optimo" selected>Optimo</option>
+                            <option value="standard">Standard</option>
+                            <option value="premium">Premium</option>
+                        </select>
+                        <div></div>
+                    </div>
+                    
+                    <div class="hosting-field-row">
+                        <label for="client-type">Тип клиента:</label>
+                        <select id="client-type" name="client-type">
+                            <option value="individual" selected>Физическое лицо</option>
+                            <option value="corporate">Юридическое лицо</option>
+                        </select>
+                        <div></div>
+                    </div>
+                    
+                    <div class="hosting-field-row">
+                        <label for="payment-period">Период оплаты:</label>
+                        <select id="payment-period" name="payment-period">
+                            <option value="1year" selected>1 год</option>
+                            <option value="6months">6 месяцев</option>
+                            <option value="1month">1 месяц</option>
+                        </select>
+                        <div></div>
+                    </div>
+
+                    <div class="hosting-section-title">Информация о пользователе</div>
+
+                    <div class="hosting-field-row">
+                        <label for="hosting-fio">ФИО:</label>
+                        <input type="text" id="hosting-fio" name="hosting-fio" placeholder="Ваше ФИО" required>
+                        <span class="required-dot">●</span>
+                    </div>
+
+                    <div class="hosting-field-row">
+                        <label for="hosting-email">E-mail адрес:</label>
+                        <input type="text" id="hosting-email" name="hosting-email" placeholder="info@timeweb.ru" required>
+                        <span class="required-dot">●</span>
+                    </div>
+
+                    <div class="hosting-field-row">
+                        <label for="hosting-username">Выбрать имя:</label>
+                        <input type="text" id="hosting-username" name="hosting-username" placeholder="username">
+                        <div></div>
+                    </div>
+
+                    <div class="hosting-field-row">
+                        <label for="hosting-icq">Ваш номер ICQ:</label>
+                        <input type="text" id="hosting-icq" name="hosting-icq" placeholder="Ваш ICQ">
+                        <div></div>
+                    </div>
+
+                    <div class="hosting-field-row">
+                        <label for="hosting-promo">Код партнёра (промо-код):</label>
+                        <input type="text" id="hosting-promo" name="hosting-promo">
+                        <div></div>
+                    </div>
+
+                    <div class="hosting-field-row" style="align-items: flex-start;">
+                        <label for="hosting-comment">Комментарий:</label>
+                        <textarea id="hosting-comment" name="hosting-comment"></textarea>
+                        <div></div>
+                    </div>
+
+                    <div class="hosting-info-note">
+                        <span style="color: #0e75a1; font-weight: bold; font-size: 14px;">●</span> - поле обязательно для заполнения.
+                    </div>
+
+                    <div class="hosting-terms">
+                        Для завершения процедуры регистрации необходимо принять условия <a href="#">договора оферты</a>.
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <input type="checkbox" id="terms-agree" name="terms-agree" required>
+                        <label for="terms-agree" style="font-size: 12px; cursor: pointer;">Я согласен(а) с условиями договора оферты</label>
+                    </div>
+
+                    <input type="submit" class="hosting-submit-btn" value="Зарегистрироваться">
+                </form>
+            </div>
+        </div>
+
+        <!-- БЛОК 5: Валюты (spisok.html) -->
+        <div class="box b5" id="currencies-content">
+            <h2>Валюты</h2>
+            <ul style="padding: 0; margin: 0;">
+                <li class="currency-item">
+                    <img src="сайт/imagess/gem.png" alt="Кристаллы">
+                    <div>
+                        <strong>Кристаллы</strong><br>
+                        Могут использоваться для покупки всех атрибутов в игре.
+                    </div>
+                </li>
+                <li class="currency-item">
+                    <img src="сайт/imagess/coin.png" alt="Монеты">
+                    <div>
+                        <strong>Монеты</strong><br>
+                        Используются для покупки скинов, акций и способностей персонажа.
+                    </div>
+                </li>
+                <li class="currency-item">
+                    <img src="сайт/imagess/bling.png" alt="Блинги">
+                    <div>
+                        <strong>Блинги</strong><br>
+                        Используются для покупки скинов. Можно доплатить кристаллами.
+                    </div>
+                </li>
+                <li class="currency-item">
+                    <img src="сайт/imagess/credits.png" alt="Кредиты">
+                    <div>
+                        <strong>Кредиты</strong><br>
+                        Нужны для разблокировки новых бойцов.
+                    </div>
+                </li>
+                <li class="currency-item">
+                    <img src="сайт/imagess/power.png" alt="Очки силы">
+                    <div>
+                        <strong>Очки силы</strong><br>
+                        Используются для повышения уровня бойца.
+                    </div>
+                </li>
+                <li class="currency-item">
+                    <img src="сайт/imagess/key.png" alt="Ключи">
+                    <div>
+                        <strong>Ключи</strong><br>
+                        Дают валюту, баффы и скины в зависимости от редкости.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- БЛОК 2: Музыка и видео (game.html) -->
+        <div class="box b2" id="media-content">
+            <h2>Музыка и видео</h2>
+            <p>
+                Музыка в меню — один из самых узнаваемых атрибутов игры. Она меняется с каждым новым сезоном или тематическим событием.
+            </p>
+            <p>Самой первой такой мелодией была:</p>
+            <audio controls>
+                <source src="сайт/imagess/brawlmusic.mp3" type="audio/mpeg">
+                Ваш браузер не поддерживает аудио.
+            </audio>
+
+            <p>Основные музыкальные темы включают:</p>
+            <ul style="padding-left: 20px;">
+                <li>Классическая тема Brawl Stars (2018)</li>
+                <li>Темы тематических обновлений</li>
+                <li>Музыка коллабораций и турниров</li>
+            </ul>
+
+            <p>Официальный релизный трейлер:</p>
+            <video controls>
+                <source src="сайт/imagess/brawlvideo.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+
+        <!-- БЛОК 3: КАРТОЧКА РАСТЕНИЯ -->
+        <div class="box b3" id="product-content">
+            <div class="product-card">
+                <img src="сайт/imagess/цветок.png" class="product-card-img" alt="Домашнее растение в горшке">
+                <div class="product-card-info">
+                    <h1 class="product-title">Домашнее растение в горшке</h1>
+                    <div class="product-price-section">
+                        <span class="old-price">2500 руб.</span>
+                        <span class="new-price">1900 руб.</span>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <div class="qty-input-wrapper">
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <div class="qty-arrows">
+                                <button type="button" class="qty-btn">▲</button>
+                                <button type="button" class="qty-btn">▼</button>
+                            </div>
+                        </div>
+                        <span class="stock-info">10 в наличии</span>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="button" class="btn-cart">В КОРЗИНУ</button>
+                        <button type="button" class="btn-buy-now">КУПИТЬ СРАЗУ</button>
+                    </div>
+
+                    <div class="product-description-title">Описание</div>
+                    <div class="product-description-text">
+                        Впустите в свой дом немного природной красоты с домашним вечнозеленым растением в горшке. Растение идеально подходит для офиса и дома, не требует особенного ухода и всегда радует глаз. Завести дома сад очень просто, вместе с домашним растением в горшке.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК 6: Призы Старр (starrdrop.html) -->
+        <div class="box b6" id="starr-content">
+            <h2>Призы Старр</h2>
+            <p>Даются за ежедневные победы, в результате прохождения Brawl Pass, за испытания. Всего существует 5 типов Призов Старр:</p>
+
+            <table class="starr-table">
+                <thead>
+                    <tr>
+                        <th>Тип</th>
+                        <th>Изображение</th>
+                        <th>Описание и Шанс</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Редкий</strong></td>
+                        <td><img src="сайт/imagess/rare.png" alt="Редкий"></td>
+                        <td>Можно получить основные игровые валюты. Шанс получения - 50%.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Сверхредкий</strong></td>
+                        <td><img src="сайт/imagess/superrare.png" alt="Сверхредкий"></td>
+                        <td>Основные валюты, дешевые спреи и пины. Шанс получения - 28%.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Эпический</strong></td>
+                        <td><img src="сайт/imagess/epic.png" alt="Эпический"></td>
+                        <td>Основные валюты, спреи, пины, редкие бойцы. Шанс получения - 15%.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Мифический</strong></td>
+                        <td><img src="сайт/imagess/mythic.png" alt="Мифический"></td>
+                        <td>Валюта, бойцы разной редкости, скины, гаджеты. Шанс получения - 5%.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Легендарный</strong></td>
+                        <td><img src="сайт/imagess/legendary.png" alt="Легендарный"></td>
+                        <td>Бойцы высокой редкости, редкие скины, звездные силы. Шанс получения - 2%.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>© 2025 Brawl Stars Фан-сайт — ВАРИАНТ 5</footer>
+    </div>
+
+    <!-- ВНЕШНИЙ СКРИПТ (Имитация Способа 3) -->
+    <script src="сайт/js/lab.js" onerror="console.log('Для локальной среды Способа 3 используется встроенный обработчик.')"></script>
+
+    <!-- Скрипты управления поведением страницы -->
+    <script>
+        // Адаптивное меню-бургер
+        const burger = document.getElementById('burgerBtn');
+        const nav = document.getElementById('mainNav');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('open');
+            burger.classList.toggle('active');
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                nav.classList.remove('open');
+                burger.classList.remove('active');
+            });
+        });
+
+        // Управление количеством товара (цветок)
+        const qtyInput = document.querySelector('.qty-input');
+        const qtyUp = document.querySelector('.qty-btn:first-child');
+        const qtyDown = document.querySelector('.qty-btn:last-child');
+
+        qtyUp.addEventListener('click', () => {
+            let current = parseInt(qtyInput.value) || 1;
+            if (current < 10) qtyInput.value = current + 1;
+        });
+
+        qtyDown.addEventListener('click', () => {
+            let current = parseInt(qtyInput.value) || 1;
+            if (current > 1) qtyInput.value = current - 1;
+        });
+
+        // ----------------------------------------------------
+        // СКРИПТЫ ДЛЯ ЛАБОРАТОРИИ JAVASCRIPT
+        // ----------------------------------------------------
+
+        function runInternalScriptDemo() {
+            alert('Выполнен Способ 2: Данная функция вызвана из внутреннего тега <script> в HTML!');
+        }
+
+        document.getElementById('externalSimBtn').addEventListener('click', () => {
+            if (typeof externalScriptLoaded !== 'undefined') {
+                runExternalScript();
+            } else {
+                alert('Выполнен Способ 3 (Имитация): Скрипт подключен через внешнюю ссылку <script src="сайт/js/lab.js">. В локальной среде функция отработала успешно!');
+            }
+        });
+
+        const dialogLog = document.getElementById('dialog-log');
+
+        function triggerAlert() {
+            alert("Это стандартное окно alert() для вывода информации!");
+            dialogLog.textContent = "alert() был запущен и успешно закрыт.";
+        }
+
+        function triggerConfirm() {
+            var answer = confirm("Вам понравилась Интерактивная Лаборатория JS?");
+            if (answer) {
+                dialogLog.textContent = "Запущен confirm(). Результат: Пользователь выбрал 'ОК' (true).";
+            } else {
+                dialogLog.textContent = "Запущен confirm(). Результат: Пользователь выбрал 'Отмена' (false).";
+            }
+        }
+
+        function triggerPrompt() {
+            var userName = prompt("Как вас зовут?", "Ученик");
+            if (userName !== null && userName !== "") {
+                dialogLog.textContent = "Запущен prompt(). Результат: Привет, " + userName + "!";
+            } else {
+                dialogLog.textContent = "Запущен prompt(). Результат: Отменено или пустой ввод.";
+            }
+        }
+
+        const condOutput = document.getElementById('conditions-output');
+
+        function runIfDemo() {
+            var hourInput = parseInt(document.getElementById('ifHours').value);
+            if (isNaN(hourInput) || hourInput < 0 || hourInput > 23) {
+                condOutput.textContent = "Пожалуйста, введите корректный час (0-23).";
+                return;
+            }
+
+            if (hourInput < 10) {
+                condOutput.textContent = "Условие: время < 10. Результат: Доброе утро!";
+            } else if (hourInput >= 10 && hourInput < 16) {
+                condOutput.textContent = "Условие: время >= 10 и время < 16. Результат: Добрый день!";
+            } else {
+                condOutput.textContent = "Условие: вечер/ночь. Результат: Привет Мир! / Добрый вечер!";
+            }
+        }
+
+        function runSwitchDemo() {
+            var dayIndex = parseInt(document.getElementById('switchDay').value);
+            var advice = "";
+
+            switch (dayIndex) {
+                case 5:
+                    advice = "Наконец-то Пятница!";
+                    break;
+                case 6:
+                    advice = "Суперская Суббота!";
+                    break;
+                case 0:
+                    advice = "Сонное Воскресенье...";
+                    break;
+                default:
+                    advice = "Обычные будни. Когда же наступят выходные?";
+            }
+            condOutput.textContent = "Выбран день недели: " + dayIndex + ". Результат: " + advice;
+        }
+
+        const loopsOutput = document.getElementById('loops-output');
+
+        function runForLoop() {
+            var text = "";
+            for (var i = 0; i <= 5; i++) {
+                text += "Число i равно " + i + "\n";
+            }
+            loopsOutput.textContent = "Цикл for выполнился:\n" + text;
+        }
+
+        function runWhileLoop() {
+            var text = "";
+            var i = 0;
+            while (i <= 5) {
+                text += "Число i равно " + i + "\n";
+                i++;
+            }
+            loopsOutput.textContent = "Цикл while выполнился:\n" + text;
+        }
+
+        function runDoWhileLoop() {
+            var text = "";
+            var i = 0;
+            do {
+                text += "Число i равно " + i + "\n";
+                i++;
+            } while (i <= 5);
+            loopsOutput.textContent = "Цикл do...while выполнился:\n" + text;
+        }
+
+        function runBreakDemo() {
+            var text = "";
+            for (var i = 1; i <= 20; i++) {
+                text += i + " ";
+                if (i === 5) {
+                    text += "[Обрыв цикла с помощью break]";
+                    break;
+                }
+            }
+            loopsOutput.textContent = "Цикл от 1 до 20 прерван на значении 5:\n" + text;
+        }
+
+        function runContinueDemo() {
+            var text = "";
+            for (var i = 1; i <= 15; i++) {
+                if (i === 3 || i === 10 || i === 13) {
+                    continue;
+                }
+                text += i + " ";
+            }
+            loopsOutput.textContent = "Цикл от 1 до 15 с пропусками (3, 10, 13) через continue:\n" + text;
+        }
+
+        const returnOutput = document.getElementById('return-output');
+
+        function product(a, b) {
+            return a * b;
+        }
+
+        function runReturnDemo() {
+            var valA = parseFloat(document.getElementById('valA').value);
+            var valB = parseFloat(document.getElementById('valB').value);
+
+            if (isNaN(valA) || isNaN(valB)) {
+                returnOutput.textContent = "Пожалуйста, введите корректные числа.";
+                return;
+            }
+
+            var result = product(valA, valB);
+            returnOutput.textContent = "Функция product(" + valA + ", " + valB + ") вернула значение через return: " + result;
+        }
+    </script>
+</body>
+</html>

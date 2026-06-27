@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="imagess/icon.png" type="image/png">
+    <meta charset="UTF-8">
+    <title>Призы Старр</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- внутренняя таблица -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 3px solid #333;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        td {
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* эффект при наведении */
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body class="container">
+
+    <h1>Призы Старр</h1>
+    <p>Даются за ежедневные победы, в результате прохождения Brawl Pass, за испытыния. Всего существует 5 типов Призов Старр:</p>
+
+    <table>
+        <tr>
+            <td><strong>Редкий</strong></td>
+            <td><img src="imagess/rare.png" width="200" height="200" alt="Редкий"></td>
+            <td>Можно получить основные игровые валюты и прочее. Шанс получения - 50%.</td>
+        </tr>
+        <tr>
+            <td><strong>Сверхредкий</strong></td>
+            <td><img src="imagess/superrare.png" width="200" height="200" alt="Сверхредкий"></td>
+            <td>Можно получить основные валюты, а так же дешёвые пины и спреи. Шанс получения - 28%.</td>
+        </tr>
+        <tr>
+            <td><strong>Эпический</strong></td>
+            <td><img src="imagess/epic.png" width="200" height="200" alt="Эпический"></td>
+            <td>Можно получить основные валюты, дешёвые спреи, пины, а так же редких бойцов. Шанс получения - 15%.</td>
+        </tr>
+        <tr>
+            <td><strong>Мифический</strong></td>
+            <td><img src="imagess/mythic.png" width="200" height="200" alt="Мифический"></td>
+            <td>Имеется основная валюта, сверхредкие, эпические, мифические бойцы, редкие скины, спреи, пины, иконки игрока, гаджеты. Шанс получения - 5%</td>
+        </tr>
+        <tr>
+            <td><strong>Легендарный</strong></td>
+            <td><img src="imagess/legendary.png" width="200" height="200" alt="Легендарный"></td>
+            <td>Эпические, мифические, легендарные бойцы, различные скины, звездные силы и прочее. Шанс получения - 2%</td>
+        </tr>
+    </table>
+
+    <p><a href="main.html">Вернуться на главную</a></p>
+
+</body>
+</html>

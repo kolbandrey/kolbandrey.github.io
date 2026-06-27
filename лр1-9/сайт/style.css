@@ -1,0 +1,79 @@
+
+@import url('fonts.css');
+
+/* 1. универсальный */
+* {
+    margin: 5px;
+}
+
+/* 2. селектор тега */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* 3. идентификатора */
+#main-header {
+    font-family: 'myfont', sans-serif; 
+    color: navy;
+    text-align: center;
+}
+
+/* 4. класса */
+.important-text {
+    font-weight: bold;
+    text-decoration: underline;
+    color: darkred;
+}
+
+/* 5. дочерний */
+ul > li {
+    list-style-type: square; 
+    color: #333;
+}
+
+/* 6.соседний */
+h1 + p {
+    font-style: italic;
+}
+
+/* 7. атрибута */
+input[type="text"] {
+    background-color: lightyellow;
+    border: 1px solid orange;
+}
+
+/* 8. псевдокласс */
+a:hover {
+    color: red;
+    font-size: 1.1em; /* Относительная единица */
+}
+
+/* 9. псевдоэлемент */
+p::first-line {
+    color: #444;
+}
+
+/* 10. вложенный */
+form button {
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s; /* анимация */
+}
+
+form button:hover {
+    transform: scale(1.1); /* трансформация */
+}
+
+/* единицы измерения */
+.container {
+    width: 80%; 
+    max-width: 900px; 
+    margin: auto;
+}
+
+/* изображения */
+img {
+    border: 2px solid black;
+    border-radius: 10px; 
+}

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купить iPhone в Москве</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- СПОСОБ 3: Подключение внешнего JS-файла (требование 1) -->
+    <script src="js/external-scripts.js" defer></script>
+</head>
+<body>
+
+    <!-- ВЕРХНЯЯ ПОЛОСА -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="city-select">Ваш город: <span>Москва ∨</span></div>
+            
+            <!-- Место для динамического приветствия и даты (требование 7 - Date) -->
+            <div id="js-date-greeting" style="color: var(--blue); font-weight: 500;"></div>
+            
+            <div class="socials">
+                <img src="img/icon-wa.svg" alt="WhatsApp">
+                <img src="img/icon-tg.svg" alt="Telegram">
+                <img src="img/icon-vk.svg" alt="VK">
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАПКА -->
+    <header class="main-header container">
+        <div class="header-top">
+            <img src="img/logo.svg" alt="Apple Logo" class="logo">
+            
+            <!-- РАБОЧИЙ БУРГЕР ДЛЯ МОБИЛКИ -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="burger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            
+            <nav class="main-nav">
+                <a href="#">Весь каталог</a>
+                <a href="#">🔥 Акции</a>
+                <a href="#" class="active">Гарантия</a>
+                <a href="#">Политика возврата</a>
+                <a href="#credit-calculator-anchor">Кредит</a>
+                <a href="#">Доставка и оплата</a>
+                
+                <!-- СПОСОБ 2: Использование протокола javascript: в href (требование 1) -->
+                <a href="javascript:runProtocolDemo()">Отзывы</a>
+                
+                <a href="#">Контакты</a>
+                
+                <!-- Мобильные ссылки внутри бургера -->
+                <a href="#" class="mob-only-link">♡ Избранное</a>
+                <a href="#" class="mob-only-link">⚖ Сравнение</a>
+            </nav>
+
+            <div class="header-phone">
+                <a href="tel:+78125619662">+7 812 561 96 62</a>
+                <span class="callback">Вам перезвонить?</span>
+            </div>
+        </div>
+
+        <div class="header-search-row">
+            <!-- СПОСОБ 1: Инлайн внедрение JS через атрибут onclick (требование 1) -->
+            <button class="btn-catalog" onclick="alert('Каталог товаров загружается. Пожалуйста, подождите...')">⋮ Каталог товаров</button>
+            <div class="search-box">
+                <input type="text" placeholder="Поиск по каталогу товаров...">
+            </div>
+            <div class="header-actions">
+                <img src="img/icon-heart.svg" alt="Избранное" class="action-icon">
+                <img src="img/icon-compare.svg" alt="Сравнение" class="action-icon">
+                <button class="btn-cart">
+                    <img src="img/icon-cart.svg" alt="Корзина" class="cart-icon"> 
+                    В корзине <span>1</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-categories">
+            <a href="#" class="cat-item"><img src="img/cat-iphone.svg" alt=""> iPhone</a>
+            <a href="#" class="cat-item"><img src="img/cat-ipad.svg" alt=""> iPad</a>
+            <a href="#" class="cat-item"><img src="img/cat-mac.svg" alt=""> Macbook и iMac</a>
+            <a href="#" class="cat-item"><img src="img/cat-watch.svg" alt=""> Watch</a>
+            <a href="#" class="cat-item active-cat"><img src="img/cat-gadgets.svg" alt=""> Гаджеты</a>
+            <a href="#" class="cat-item"><img src="img/cat-accessories.svg" alt=""> Аксессуары</a>
+            <img src="img/mini-banner.jpg" alt="Promo" class="mini-promo">
+        </div>
+    </header>
+
+    <!-- СВЕТЛЫЙ ГЛАВНЫЙ БАННЕР -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-image">
+                <img src="img/hero-iphone.png" alt="iPhone 14">
+            </div>
+            <div class="hero-text">
+                <h1>iPhone 14</h1>
+                <p class="hero-price">от <span>137 900 ₽</span></p>
+                <button class="btn-primary">подробнее</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК ТОВАРОВ 1: Самое популярное -->
+    <section class="products-section container">
+        <h2 class="section-title">купить iPhone в Москве</h2>
+        
+        <div class="tabs">
+            <a href="#" class="tab active-tab">Самое популярное</a>
+        </div>
+
+        <div class="products-grid">
+            <!-- Товар 1 -->
+            <div class="product-card">
+                <div class="card-top">
+                    <div class="rating">★★★★★ <span class="reviews">(14)</span></div>
+                    <div class="card-actions">
+                        <img src="img/icon-heart.svg" alt="Избранное">
+                        <img src="img/icon-compare.svg" alt="Сравнение">
+                    </div>
+                </div>
+                <h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3>
+                <img src="img/product-1.png" alt="iPhone" class="product-img">
+                <div class="product-info">
+                    <p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p>
+                    <div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div>
+                </div>
+                <button class="btn-buy btn-green"><img src="img/icon-cart.svg" alt=""> в корзине</button>
+                <div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div>
+            </div>
+
+            <!-- Товар 2 -->
+            <div class="product-card">
+                <div class="card-top">
+                    <div class="rating">★★★★★ <span class="reviews">(14)</span></div>
+                    <div class="card-actions">
+                        <img src="img/icon-heart.svg" alt="Избранное">
+                        <img src="img/icon-compare.svg" alt="Сравнение">
+                    </div>
+                </div>
+                <h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3>
+                <img src="img/product-1.png" alt="iPhone" class="product-img">
+                <div class="product-info">
+                    <p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p>
+                    <div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div>
+                </div>
+                <button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button>
+                <div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div>
+            </div>
+
+            <!-- Товар 3 -->
+            <div class="product-card">
+                <div class="card-top">
+                    <div class="rating">★★★★★ <span class="reviews">(14)</span></div>
+                    <div class="card-actions">
+                        <img src="img/icon-heart.svg" alt="Избранное">
+                        <img src="img/icon-compare.svg" alt="Сравнение">
+                    </div>
+                </div>
+                <h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3>
+                <img src="img/product-1.png" alt="iPhone" class="product-img">
+                <div class="product-info">
+                    <p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p>
+                    <div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div>
+                </div>
+                <button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button>
+                <div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div>
+            </div>
+
+            <!-- Товар 4 -->
+            <div class="product-card">
+                <div class="card-top">
+                    <div class="rating">★★★★★ <span class="reviews">(14)</span></div>
+                    <div class="card-actions">
+                        <img src="img/icon-heart.svg" alt="Избранное">
+                        <img src="img/icon-compare.svg" alt="Сравнение">
+                    </div>
+                </div>
+                <h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3>
+                <img src="img/product-1.png" alt="iPhone" class="product-img">
+                <div class="product-info">
+                    <p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p>
+                    <div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div>
+                </div>
+                <button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button>
+                <div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕО ТЕКСТ ВЕРХНИЙ -->
+    <section class="seo-text container">
+        <h2>Новые модели Айфонов по выгодным ценам</h2>
+        <p>Для тех, кто хочет приобрести новый телефон магазин Istoreapple.ru предлагает:</p>
+        <ul>
+            <li>Низкие цены на все виды устройств, недорогие аксессуары;</li>
+            <li>Оригинальные подарки бренда;</li>
+            <li>Новая линейка смартфонов и проверенные старые модели;</li>
+            <li>Лаконичный дизайн, большой выбор цветов и оттенков;</li>
+            <li>Все товары в каталоге есть в наличии и доступны для покупки в кредит и рассрочку;</li>
+            <li>Быстрая доставка по Санкт-Петербургу и области;</li>
+            <li>Гарантия на все модели телефонов;</li>
+            <li>Все способы оплаты!</li>
+            <li>Товары, представленные на официальном сайте Istoreapple.ru, сертифицированы. Мы занимаемся продажей айфонов с 2013 года. Вы всегда можете прочитать отзывы о покупке наших клиентов, позвонить в магазин и получить консультацию по любой модели Apple.</li>
+        </ul>
+    </section>
+
+    <!-- ТЕМНЫЙ БАННЕР -->
+    <section class="dark-promo">
+        <div class="container dark-promo-inner">
+            <div class="dark-promo-img">
+                <img src="img/promo-dark-phone.png" alt="iPhone 14 Pro Max">
+            </div>
+            <div class="dark-promo-text">
+                <h2>iPhone 14 Pro Max</h2>
+                <p>по лучшей цене в Москве</p>
+                <button class="btn-primary">подробнее</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕО ТЕКСТ НИЖНИЙ -->
+    <section class="seo-text container">
+        <h2>Новые модели Айфонов по выгодным ценам</h2>
+        <p>Для тех, кто хочет приобрести новый телефон магазин Istoreapple.ru предлагает:</p>
+        <ul>
+            <li>Низкие цены на все виды устройств, недорогие аксессуары;</li>
+            <li>Оригинальные подарки бренда;</li>
+            <li>Новая линейка смартфонов и проверенные старые модели;</li>
+            <li>Лаконичный дизайн, большой выбор цветов и оттенков;</li>
+            <li>Все товары в каталоге есть в наличии и доступны для покупки в кредит и рассрочку;</li>
+            <li>Быстрая доставка по Санкт-Петербургу и области;</li>
+            <li>Гарантия на все модели телефонов;</li>
+            <li>Все способы оплаты!</li>
+            <li>Товары, представленные на официальном сайте Istoreapple.ru, сертифицированы. Мы занимаемся продажей айфонов с 2013 года. Вы всегда можете прочитать отзывы о покупке наших клиентов, позвонить в магазин и получить консультацию по любой модели Apple.</li>
+        </ul>
+    </section>
+
+    <!-- БЛОК ТОВАРОВ 2: Новинки (8 товаров - 2 ряда) -->
+    <section class="products-section container">
+        <div class="tabs">
+            <a href="#" class="tab active-tab">Новинки</a>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Товар 1 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+            <!-- Товар 2 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+            <!-- Товар 3 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+            <!-- Товар 4 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+            <!-- Товар 5 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+            <!-- Товар 6 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+            <!-- Товар 7 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+            <!-- Товар 8 -->
+            <div class="product-card"><div class="card-top"><div class="rating">★★★★★ <span class="reviews">(14)</span></div><div class="card-actions"><img src="img/icon-heart.svg" alt=""><img src="img/icon-compare.svg" alt=""></div></div><h3 class="product-title">Apple iPhone XS Max<br>256 ГБ золотой</h3><img src="img/product-1.png" alt="iPhone" class="product-img"><div class="product-info"><p class="stock"><span class="dot-green"></span> Есть в наличии <span class="warranty">Гарантия 1 год</span></p><div class="price-block"><span class="old-price">137 900 ₽</span><span class="new-price">137 900 ₽</span></div></div><button class="btn-buy btn-blue"><img src="img/icon-cart.svg" alt=""> в корзину</button><div class="card-footer"><a href="#">Хочу дешевле</a><a href="#" class="gray-link">Купить в 1 клик</a></div></div>
+        </div>
+    </section>
+
+    <!-- БЛОК: НАШИ ПРЕИМУЩЕСТВА -->
+    <section class="advantages container">
+        <h2 class="section-title">Наши преимущества</h2>
+        <div class="adv-grid">
+            <div class="adv-card bg-pink">
+                <img src="img/adv-percent.png" alt="Акции" class="adv-icon">
+                <h3>Акции и подарки</h3>
+                <p>Постоянные акции, бонусы и скидки. Покупайте технику Apple по самым выгодным ценам</p>
+                <button class="adv-btn">подробнее</button>
+            </div>
+            <div class="adv-card bg-purple">
+                <img src="img/adv-truck.png" alt="Доставка" class="adv-icon">
+                <h3>Доставим<br>за 3 часа</h3>
+                <p>Быстрая и бесплатная доставка по Москве. Доставим за 3 часа в день заказа. Также доступна быстрая доставка по всей России или самовывоз</p>
+                <button class="adv-btn">подробнее</button>
+            </div>
+            <div class="adv-card bg-blue">
+                <img src="img/adv-wallet.png" alt="Оплата" class="adv-icon">
+                <h3>Удобные способы<br>оплаты</h3>
+                <p>Наличными или картой при получении, оплата на сайте или в кредит</p>
+                <button class="adv-btn">подробнее</button>
+            </div>
+            <div class="adv-card bg-yellow">
+                <img src="img/adv-bank.png" alt="Кредит" class="adv-icon">
+                <h3>Покупка в кредит</h3>
+                <p>Получите самое выгодное кредитное предложение от более чем 30 ведущих банков страны</p>
+                <button class="adv-btn">подробнее</button>
+            </div>
+            <div class="adv-card bg-green">
+                <img src="img/adv-check.png" alt="Гарантия" class="adv-icon">
+                <h3>Гарантия</h3>
+                <p>Все товары, представленные в нашем сайте, имеют гарантию от нашего магазина или компании Apple</p>
+                <button class="adv-btn">подробнее</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================== -->
+    <!-- ДОБАВЛЕННЫЙ ИНТЕРАКТИВНЫЙ БЛОК: JS-ЛАБОРАТОРИЯ        -->
+    <!-- ==================================================== -->
+    <section class="js-lab container" id="credit-calculator-anchor">
+        <h2 class="section-title">Интерактивный раздел Istoreapple</h2>
+        <div class="js-lab-grid">
+            
+            <!-- Инструмент 1: Кредитный калькулятор (Math, Функции, return, switch, if) -->
+            <div class="js-card">
+                <h3>Рассчитать покупку в кредит</h3>
+                <p class="js-card-desc">Расчет платежа на основе стоимости товара (объект Math)</p>
+                <div class="js-form-group">
+                    <label for="calc-price">Стоимость iPhone (₽):</label>
+                    <input type="text" id="calc-price" value="137900">
+                </div>
+                <div class="js-form-group">
+                    <label for="calc-bank">Выберите банк для расчета:</label>
+                    <select id="calc-bank">
+                        <option value="sber">Сбербанк (12.5% годовых)</option>
+                        <option value="tinkoff">Т-Банк (14.0% годовых)</option>
+                        <option value="vtb">ВТБ (11.9% годовых)</option>
+                    </select>
+                </div>
+                <div class="js-form-group">
+                    <label for="calc-months">Срок кредитования (мес.):</label>
+                    <input type="text" id="calc-months" value="12">
+                </div>
+                <button class="btn-primary" onclick="calculateInstallment()" style="width: 100%; padding: 12px; font-size: 14px;">Рассчитать платеж</button>
+                <div id="calc-output" class="js-output">Результат появится здесь...</div>
+            </div>
+
+            <!-- Инструмент 2: Поиск цветов и моделей (Массивы, Строки, Циклы, break/continue) -->
+            <div class="js-card">
+                <h3>Наличие цветов на складе</h3>
+                <p class="js-card-desc">Поиск по цветам и моделям в реальном времени</p>
+                <div class="js-form-group">
+                    <label for="color-search">Введите желаемый цвет:</label>
+                    <input type="text" id="color-search" placeholder="золотой, фиолетовый...">
+                </div>
+                <button class="btn-primary" onclick="searchColorOnStock()" style="width: 100%; padding: 12px; font-size: 14px; margin-bottom: 12px;">Проверить цвет</button>
+                <div id="color-output" class="js-output">Список цветов будет выведен здесь...</div>
+            </div>
+
+            <!-- Инструмент 3: VIP Клуб скидок (alert, prompt, confirm) -->
+            <div class="js-card">
+                <h3>Секретные предложения VIP</h3>
+                <p class="js-card-desc">Вступите в закрытый клуб покупателей</p>
+                <div style="text-align: center; padding: 20px 0;">
+                    <button class="btn-primary" onclick="getVipDiscount()" style="padding: 15px 30px; font-size: 16px;">Получить скидочную карту</button>
+                </div>
+                <div id="vip-output" class="js-output">Подайте заявку, нажав на кнопку выше.</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- БЛОК: ПОДПИСКА НА РАССЫЛКУ -->
+    <section class="subscribe-section">
+        <div class="container subscribe-inner">
+            <div class="subscribe-img">
+                <img src="img/subscribe-phone.png" alt="Подписка на рассылку">
+            </div>
+            <div class="subscribe-content">
+                <h2>Подписка на<br>рассылку акций!</h2>
+                <p class="subscribe-desc">Подпишитесь на рассылку, чтобы<br>узнавать о всех акциях первым</p>
+                <div class="subscribe-card">
+                    <h3>Скидка 10%</h3>
+                    <p>на первую покупку за подписку</p>
+                    <form class="subscribe-form">
+                        <input type="text" value="+ 7 ">
+                        <button type="submit">подписаться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <div class="footer-col brand-col">
+                <img src="img/logo.svg" alt="Apple Logo" class="footer-logo">
+                <p class="copyright">© 2013-2022<br>Продажа iPhone в МСК</p>
+                <p class="disclaimer">*Сайт не является публичной офертой. Вся информация, указанная на сайте носит информационный характер.</p>
+            </div>
+            <div class="footer-col links-col">
+                <a href="#">Гарантия</a>
+                <a href="#">Политика возврата</a>
+                <a href="#">Кредит</a>
+                <a href="#">Доставка и оплата</a>
+                <a href="#">Отзывы</a>
+                <a href="#">Контакты</a>
+                <a href="#">Политика конфиденциальности</a>
+            </div>
+            <div class="footer-col links-col">
+                <a href="#">iPhone</a>
+                <a href="#">iPad</a>
+                <a href="#">Macbook и iMac</a>
+                <a href="#">Watch</a>
+                <a href="#">Аксессуары</a>
+                <a href="#">Акции</a>
+            </div>
+            <div class="footer-col contacts-col">
+                <a href="tel:+78127048697" class="footer-phone">+7 812 704 86 97</a>
+                <p class="working-hours">Бесплатная консультация<br>С 10:00 до 21:00, без выходных</p>
+                <div class="footer-actions">
+                    <a href="#" class="footer-callback">Заказать звонок</a>
+                    <div class="footer-socials">
+                        <img src="img/icon-wa.svg" alt="WA">
+                        <img src="img/icon-tg.svg" alt="TG">
+                        <img src="img/icon-vk.svg" alt="VK">
+                    </div>
+                </div>
+                <div class="footer-addresses">
+                    <p>Москва, ул Барклая 8</p>
+                    <p>Москва, ул Барклая 8</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================================================== -->
+    <!-- СПОСОБ 4: ВНУТРЕННИЙ СКРИПТ (Тег script перед body)  -->
+    <!-- ==================================================== -->
+    <script>
+        // --- 7. РАБОТА С ВНУТРЕННИМИ ОБЪЕКТАМИ Date и String (Динамическое приветствие) ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const dateObj = new Date();
+            const hour = dateObj.getHours();
+            let greeting = "Добро пожаловать в Istoreapple!";
+
+            // Конструкция if (требование 2)
+            if (hour >= 6 && hour < 12) {
+                greeting = "Доброе утро!";
+            } else if (hour >= 12 && hour < 18) {
+                greeting = "Добрый день!";
+            } else if (hour >= 18 && hour < 24) {
+                greeting = "Добрый вечер!";
+            } else {
+                greeting = "Доброй ночи!";
+            }
+
+            // Форматирование даты
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const year = dateObj.getFullYear();
+            const dateStr = `Сегодня: ${day}.${month}.${year}`;
+
+            // Склеивание строк методами объекта String
+            const resultGreeting = greeting.concat(" ", dateStr);
+
+            // Отрисовка на странице
+            const target = document.getElementById('js-date-greeting');
+            if (target) {
+                target.textContent = resultGreeting;
+            }
+        });
+
+        // Способ 2 (протокол javascript:) вызываемый обработчик
+        function runProtocolDemo() {
+            alert("Инициализирован переход по ссылке с протоколом 'javascript:'!");
+        }
+
+        // --- 3. РАСЧЕТ ПО ФОРМУЛЕ (Math) И 4. ПОЛЬЗОВАТЕЛЬСКАЯ ФУНКЦИЯ ---
+        function calculateInstallment() {
+            const priceInput = document.getElementById('calc-price').value.trim();
+            const bankSelect = document.getElementById('calc-bank').value;
+            const monthsInput = document.getElementById('calc-months').value.trim();
+            const output = document.getElementById('calc-output');
+
+            const price = parseFloat(priceInput);
+            const months = parseInt(monthsInput);
+
+            // Проверка входных данных (if-операторы)
+            if (isNaN(price) || price <= 0 || isNaN(months) || months <= 0) {
+                output.innerHTML = "<span style='color: #e53e3e;'>Ошибка: введите положительные числа!</span>";
+                return; // Возврат значения (return)
+            }
+
+            // Выбор ставки по банку через switch (требование 2)
+            let annualRate = 0.12;
+            switch(bankSelect) {
+                case 'sber':
+                    annualRate = 0.125;
+                    break;
+                case 'tinkoff':
+                    annualRate = 0.14;
+                    break;
+                case 'vtb':
+                    annualRate = 0.119;
+                    break;
+                default:
+                    annualRate = 0.12;
+            }
+
+            // Формула расчета ежемесячного аннуитетного платежа:
+            // M = P * (r * (1 + r)^n) / ((1 + r)^n - 1)
+            const monthlyRate = annualRate / 12;
+            const compoundInterest = Math.pow(1 + monthlyRate, months); // Использование Math.pow
+            const monthlyPayment = price * (monthlyRate * compoundInterest) / (compoundInterest - 1);
+            
+            // Округление через Math.round
+            const roundedPayment = Math.round(monthlyPayment);
+            const overpayment = Math.round((roundedPayment * months) - price);
+
+            output.innerHTML = `Ежемесячный платеж: <strong>${roundedPayment.toLocaleString()} ₽</strong>/мес.<br>
+            <span style="font-size: 12px; color: #718096;">Переплата за срок: ${overpayment.toLocaleString()} ₽</span>`;
+        }
+
+        // --- 5. ОБРАБОТКА МАССИВОВ (Array) И ЦИКЛЫ (for, while, break, continue) ---
+        function searchColorOnStock() {
+            const searchInput = document.getElementById('color-search').value.trim().toLowerCase();
+            const output = document.getElementById('color-output');
+
+            // Объявление массива (требование 5)
+            const colorsOnStock = ["золотой", "серебристый", "темный космос", "темно-фиолетовый", "небесно-голубой"];
+            
+            // Работа с методами массива (push)
+            colorsOnStock.push("розовый");
+
+            if (searchInput === "") {
+                // Использование цикла while (требование 2)
+                let text = "Все цвета на складе:<br>";
+                let i = 0;
+                while (i < colorsOnStock.length) {
+                    text += `- ${colorsOnStock[i]}<br>`;
+                    i++;
+                }
+                output.innerHTML = text;
+                return;
+            }
+
+            // Использование цикла for и переходов break/continue (требование 2)
+            let found = false;
+            let resultText = "";
+
+            for (let j = 0; j < colorsOnStock.length; j++) {
+                const currentColor = colorsOnStock[j];
+
+                // Пример continue: пропустим "серебристый" при выводе
+                if (currentColor === "серебристый" && searchInput !== "серебристый") {
+                    continue;
+                }
+
+                // Работа со строками: toLowerCase, includes
+                if (currentColor.includes(searchInput)) {
+                    found = true;
+                    resultText = `Цвет "<strong>${currentColor}</strong>" найден на складе!`;
+                    break; // Прерывание цикла (break)
+                }
+            }
+
+            // do...while пример работы (просто холостая демонстрационная итерация)
+            let dummyCounter = 0;
+            do {
+                dummyCounter++;
+            } while (dummyCounter < 1);
+
+            if (found) {
+                output.innerHTML = resultText;
+            } else {
+                // Использование join()
+                output.innerHTML = `<span style="color: #e53e3e;">Цвет не найден.</span><br>
+                <span style="font-size: 11px; color: #718096;">Доступны: ${colorsOnStock.join(", ")}</span>`;
+            }
+        }
+
+        // --- 6. ВСПЛЫВАЮЩИЕ ОКНА (alert, prompt, confirm) ---
+        function getVipDiscount() {
+            const output = document.getElementById('vip-output');
+            
+            // Всплывающее окно prompt()
+            const clientName = prompt("Для получения скидки введите Ваше имя:", "Покупатель");
+
+            if (clientName === null || clientName.trim() === "") {
+                // Всплывающее окно alert()
+                alert("Действие отменено. Скидочная карта не сгенерирована.");
+                output.innerHTML = "Пожалуйста, введите Ваше имя для генерации карты.";
+                return;
+            }
+
+            // Всплывающее окно confirm()
+            const isAdult = confirm(`${clientName.trim()}, подтвердите, что Вам есть 18 лет для участия в программе привилегий.`);
+
+            if (isAdult) {
+                alert(`Спасибо, ${clientName.trim()}! Скидочная карта на 5% успешно активирована.`);
+                output.innerHTML = `<span style="color: #38a169; font-weight: bold;">VIP-Карта активирована на имя: ${clientName.trim()}</span>`;
+            } else {
+                alert("К сожалению, программа доступна только для лиц старше 18 лет.");
+                output.innerHTML = "<span style='color: #e53e3e;'>Отказ в выдаче карты (возрастные ограничения)</span>";
+            }
+        }
+    </script>
+</body>
+</html>
