@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контрольная работа - Вариант №8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+        }
+        .task-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+
+
+    <script>
+        function showTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            alert(`Текущее время: ${hours}:${minutes}:${seconds}`);
+        }
+    </script>
+
+    <script>
+        function calculateFormula(x, y) {
+            const part1 = y - Math.sqrt(Math.abs(x));
+            const denominator = x + (Math.pow(x, 2) / 4);
+            const part2 = x - (y / denominator);
+            const innerExpression = part1 * part2;
+            return Math.log(Math.abs(innerExpression));
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Результаты выполнения заданий (Вариант №8)</h1>
+
+    <!-- ЗАДАНИЕ 1 -->
+    <div class="task-card">
+        <h2>Задание 1. Работа с объектом Date</h2>
+        <p>Нажмите на кнопку ниже, чтобы отобразить текущее время:</p>
+        <button onclick="showTime()">Показать время</button>
+    </div>
+
+    <!-- ЗАДАНИЕ 2 -->
+    <div class="task-card">
+        <h2>Задание 2. Работа с операторами циклов (for)</h2>
+        <script>
+            (function() {
+                const lastName = "Иванов"; 
+                const firstName = "Иван";   
+                const iterations = 8 + 5; // 13 повторений для 8-го варианта
+
+                for (let i = 1; i <= iterations; i++) {
+                    document.write(`${i}. ${lastName} ${firstName}<br>`);
+                }
+            })();
+        </script>
+    </div>
+
+    <!-- ЗАДАНИЕ 3 -->
+    <div class="task-card">
+        <h2>Задание 3. Работа с объектом Array</h2>
+        <!-- Скрипт размещен внутри Body -->
+        <script>
+            (function() {
+                const numbers = [12, 5, 8, 23, 14, 7, 10];
+                let evenCount = 0;
+
+                for (let i = 0; i < numbers.length; i++) {
+                    if (numbers[i] % 2 === 0) {
+                        evenCount++;
+                    }
+                }
+
+                document.write(`Исходный массив: [${numbers.join(', ')}]<br>`);
+                document.write(`Количество четных элементов: <strong>${evenCount}</strong>`);
+            })();
+        </script>
+    </div>
+
+    <!-- ЗАДАНИЕ 4 -->
+    <div class="task-card">
+        <h2>Задание 4. Работа с объектом Math</h2>
+        <script>
+            (function() {
+                const x = 2;
+                const y = 3;
+                const result = calculateFormula(x, y);
+
+                document.write(`Входные параметры: x = ${x}, y = ${y}<br>`);
+                document.write(`Результат расчета по формуле: <strong>${result}</strong>`);
+            })();
+        </script>
+    </div>
+
+    <!-- ЗАДАНИЕ 5 -->
+    <div class="task-card">
+        <h2>Задание 5. Работа со строками STRING</h2>
+        <script>
+            (function() {
+                const S1 = "ИВАНОВ";
+                const S2 = "ул. Ленина, д. 5";
+
+                const lengthS2 = S2.length;
+                const reversedS1 = S1.split("").reverse().join("");
+                const lowerS2 = S2.toLowerCase();
+
+                document.write(`Строка S1: "${S1}"<br>`);
+                document.write(`Строка S2: "${S2}"<br><br>`);
+                document.write(`1. Длина строки S2: <strong>${lengthS2}</strong> символов<br>`);
+                document.write(`2. Строка S1 в обратном порядке: <strong>${reversedS1}</strong><br>`);
+                document.write(`3. Строка S2 в нижнем регистре: <strong>${lowerS2}</strong><br>`);
+            })();
+        </script>
+    </div>
+
+    <!-- ЗАДАНИЕ 6 -->
+    <div class="task-card">
+        <h2>Задание 6. Объектная модель браузера (BOM)</h2>
+        <p>Каждые 4 секунды будет появляться окно оповещения с текущим URL-адресом этой страницы.</p>
+        <script>
+            (function() {
+                function showURL() {
+                    const currentURL = window.location.href;
+                    alert(`Текущий URL-адрес страницы:\n${currentURL}`);
+                }
+                
+                // Запуск интервала (каждые 4000 мс)
+                setInterval(showURL, 4000);
+            })();
+        </script>
+    </div>
+
+</body>
+</html>

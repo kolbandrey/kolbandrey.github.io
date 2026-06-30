@@ -1,3 +1,30 @@
+<?php
+session_start();
+
+$subscribe_message = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subscribe_phone'])) {
+    $phone = trim($_POST['subscribe_phone']);
+    if (!empty($phone) && $phone !== '+ 7') {
+        $file = 'requests.json';
+        $requests = [];
+        
+        if (file_exists($file)) {
+            $requests = json_decode(file_get_contents($file), true) ?? [];
+        }
+        
+        $requests[] = [
+            'id' => uniqid(),
+            'phone' => htmlspecialchars($phone),
+            'date' => date('d.m.Y H:i'),
+            'type' => 'Подписка на акции'
+        ];
+        
+        file_put_contents($file, json_encode($requests, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        $subscribe_message = 'Вы успешно подписались на акции!';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -304,10 +331,13 @@
                 <div class="subscribe-card">
                     <h3>Скидка 10%</h3>
                     <p>на первую покупку за подписку</p>
-                    <form class="subscribe-form">
-                        <input type="text" value="+ 7 ">
+                    <form class="subscribe-form" method="POST" action="">
+                        <input type="text" name="subscribe_phone" value="+ 7 ">
                         <button type="submit">подписаться</button>
                     </form>
+                    <?php if (!empty($subscribe_message)): ?>
+                        <p style="color: #fff; margin-top: 15px; font-weight: bold; font-size: 14px; text-align: left;"><?= $subscribe_message ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
