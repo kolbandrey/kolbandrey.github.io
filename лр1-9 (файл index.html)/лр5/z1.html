@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>лр5</title>
+    <meta name="keywords" content="верстка, вариант 12, фикс">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #e3f0ff; display: flex; justify-content: center; }
+        
+        .wrapper { 
+            width: 1200px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+        
+        header { background: #258ace; height: 100px; }
+        footer { background: #453f3f; height: 80px; color: white; }
+        
+        /* Средняя часть: 3 колонки в ряд */
+        .middle { 
+            display: flex; 
+            gap: 10px; 
+            height: 470px; /* Высота блока b4 */
+        }
+        .col-left, .col-right, .col-center { display: flex; }
+        
+        /* Левая колонка: блоки 1, 2, 3 вертикально */
+        .col-left { 
+            flex-direction: column; 
+            width: 300px; 
+            gap: 10px; 
+        }
+        .col-center { width: 600px; }
+        .col-right { 
+            flex-direction: column; 
+            width: 300px; 
+            gap: 10px; 
+        }
+        .b1 { background: #6d44e7; height: 150px; }
+        .b2 { background: #e55ae1; height: 150px; }
+        .b3 { background: #6b4ae2; height: 150px; }
+        .b4 { background: #b9e6ed; width: 100%; height: 100%; }
+        .b5 { background: #878de7; height: 150px; }
+        .b6 { background: #514be7; height: 310px; }
+        
+        .block { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            border: 1px solid #000; 
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="block">Шапка (Логотип и Меню)</header>
+        
+        <div class="middle">
+            <div class="col-left">
+                <div class="block b1">1</div>
+                <div class="block b2">2</div>
+                <div class="block b3">3</div>
+            </div>
+            <div class="col-center">
+                <div class="block b4">4 (Основной контент)</div>
+            </div>
+            <div class="col-right">
+                <div class="block b5">5</div>
+                <div class="block b6">6</div>
+            </div>
+        </div>
+        
+        <footer class="block">Подвал (Копирайт)</footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Колб Андрей Иосифович</title>
+    <style>
+        body {
+            background-color: yellow; 
+            font-family: Arial, sans-serif; 
+            font-size: 11pt; 
+        } 
+
+        .my-table {
+            border-collapse: collapse;
+            color: black; 
+            width: 450px;
+            border: 2px solid black;
+        }
+        .my-table td {
+            border: 1px solid black;
+            padding: 10px;
+            background-color: white; 
+        }
+        /* темная ячейка */
+        .dark-cell {
+            background-color: #777 !important;
+            width: 100px;
+        }
+        /* большая ячейка под таблицей */
+        .huge-footer {
+            background-color: #444 !important;
+            height: 50px; 
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* задание 7 */
+        .window-frame {
+            width: 380px;
+            border: 1px solid #000;
+            background-color: #e0e0e0; 
+            margin-top: 20px;
+        }
+        .window-header {
+            background-color: #888;
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10pt;
+        }
+        .window-content {
+            padding: 15px;
+            color: black;
+        }
+        .field-group {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .buttons-row {
+            text-align: right;
+            margin-top: 15px;
+        }
+      
+        
+    </style> 
+    <!-- задание 1-->
+</head>
+<body>
+    <a href="#my-table-link">Перейти к таблице</a>
+
+    <h2 align="center"><u>Колб Андрей Иосифович</u></h2>
+    <p>
+        <i style="color: green;"><s>Группа ПЗТ-42</s></i>
+    </p>
+    <div align="center">
+        <sup>Курс 3</sup>
+    </div>
+    <p align="left" style="color: blue;">
+        <b>Увлечения: компьютерные игры, готовка, сериалы </b>
+    </p>
+    <!-- задание 2-->
+
+    <ol start="2">
+        <li>Зима</li>
+        <li>Весна</li>
+        <li>Лето</li>
+    </ol>
+    <img src="imagess/legendary.png" width="120" height="120" alt="legendary"> 
+    <!-- 3 и 4 задания-->
+
+    <p>Почта: <a href="https://mail.ru">kolbandrej7@mail.ru</a></p>
+
+    <table class="my-table" id="my-table-link">
+        <tr>
+            <td rowspan="2" class="dark-cell">Ромашка</td>
+            <td>Гвоздика</td>
+            <td class="dark-cell"></td> <!-- залитая ячейка -->
+        </tr>
+        <tr>
+            <td>Василек</td>
+            <td>Лилия</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="huge-footer"></td>
+        </tr>
+    </table>
+
+    <!-- форма задание 7 -->
+    <div class="window-frame">
+        <div class="window-header">
+            <span>Имя пользователя и пароль</span>
+            <span>[x]</span>
+        </div>
+        <div class="window-content">
+            <div class="field-group">
+                <span>Сервер</span>
+                <span>192.168.0.80</span>
+            </div>
+            <div class="field-group">
+                <span>Сообщение</span>
+                <span>Protected</span>
+            </div>
+            <br>
+            <form>
+                <div class="field-group">
+                    <label>Имя</label>
+                    <input type="text"  value="Admin">
+                </div>
+                <div class="field-group">
+                    <label >Пароль</label>
+                    <input type="password" value="*****">
+                </div>
+                <div style="margin-left: 100px;">
+                    <input type="checkbox"  checked>
+                    <label>Запомнить пароль</label>
+                </div>
+                <div class="buttons-row">
+                    <button >ОК</button>
+                    <button >Отменить...</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- задание 7-->
+
+</body>
+</html>

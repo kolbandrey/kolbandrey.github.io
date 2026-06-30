@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>лр6</title>
+    <style>
+        body { margin: 0; padding: 10px; }
+        .wrapper { 
+            display: grid; 
+            width: 100%; 
+            gap: 1%;
+            grid-template-columns: 30% 38% 29%; /* Сумма с учетом gap примерно 100% */
+        }
+        header, footer { grid-column: 1 / 4; height: 100px; background: #44ec07; }
+        .col-1 { display: flex; flex-direction: column; gap: 10px; }
+        .col-2 { background: #4027ae; min-height: 400px; }
+        .col-3 { display: flex; flex-direction: column; gap: 10px; }
+        
+        .box { background: #ecf0f1; border: 2px solid #2c3e50; display: flex; align-items: center; justify-content: center; }
+        .h-small { height: 150px; }
+        .h-med { height: 310px; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="box">ШАПКА (100%)</header>
+        <div class="col-1">
+            <div class="box h-small">1 (30%)</div>
+            <div class="box h-small">2 (30%)</div>
+            <div class="box h-small">3 (30%)</div>
+        </div>
+        <div class="box col-2">4 (40%)</div>
+        <div class="col-3">
+            <div class="box h-small">5 (Остаток)</div>
+            <div class="box h-med">6 (Остаток)</div>
+        </div>
+        <footer class="box">ПОДВАЛ (100%)</footer>
+    </div>
+</body>
+</html>
