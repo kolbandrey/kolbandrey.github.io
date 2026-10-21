@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Межоконное взаимодействие</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.5; }
+    .example-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    button { padding: 8px 16px; cursor: pointer; margin-right: 5px; }
+    .log-box { background: #f4f4f4; border: 1px solid #ddd; padding: 10px; margin-top: 10px; height: 80px; overflow-y: auto; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1> Межоконное взаимодействие (BOM)</h1>
+
+  <div class="example-card">
+    <h3>Открытие, управление и получение данных из дочернего окна</h3>
+    <p>Открывает окно с динамически сгенерированным содержимым и считывает данные обратно.</p>
+    <button onclick="openChild1()">Открыть окно</button>
+    <button onclick="closeChild1()">Закрыть окно</button>
+    <button onclick="readFromChild1()">Прочитать данные из окна</button>
+    <div id="log1" class="log-box"></div>
+  </div>
+
+  <div class="example-card">
+    <h3>Двусторонний обмен сообщениями via postMessage API</h3>
+    <p>Безопасная передача сообщений между главным и всплывающим окном.</p>
+    <button onclick="openChild2()">Открыть дочернее окно</button>
+    <button onclick="sendMessageToChild2()">Отправить сообщение</button>
+    <div id="log2" class="log-box"></div>
+  </div>
+
+  <!-- Пример 1.3 -->
+  <div class="example-card">
+    <h3>Синхронизация состояния и проверка window.closed</h3>
+    <p>Мониторинг статуса дочернего окна с помощью <code>setInterval</code>.</p>
+    <button onclick="openChild3()">Открыть окно под наблюдением</button>
+    <div id="log3" class="log-box"></div>
+  </div>
+
+  <script>
+    let childWin1 = null;
+    function openChild1() {
+      childWin1 = window.open("", "ChildWindow1", "width=400,height=300,left=100,top=100");
+      if (childWin1) {
+        childWin1.document.write(`
+          <html><head><title>Дочернее окно 1</title></head><body style="font-family:sans-serif;">
+            <h3>Дочернее окно</h3>
+            <input id="userInput" value="Привет из дочернего окна!" style="width: 80%;">
+          </body></html>
+        `);
+        document.getElementById('log1').innerText += 'Окно 1 успешно открыто.\n';
+      }
+    }
+    function closeChild1() {
+      if (childWin1 && !childWin1.closed) {
+        childWin1.close();
+        document.getElementById('log1').innerText += 'Окно 1 закрыто из родителя.\n';
+      }
+    }
+    function readFromChild1() {
+      if (childWin1 && !childWin1.closed) {
+        const val = childWin1.document.getElementById('userInput').value;
+        document.getElementById('log1').innerText += 'Получено из Окна 1: "' + val + '"\n';
+      } else {
+        alert('Окно 1 не открыто!');
+      }
+    }
+
+    let childWin2 = null;
+    function openChild2() {
+      childWin2 = window.open("", "ChildWindow2", "width=450,height=350");
+      if (childWin2) {
+        childWin2.document.write(`
+          <html><head><title>postMessage Child</title></head><body style="font-family:sans-serif; padding:20px;">
+            <h3>Дочернее окно (postMessage)</h3>
+            <div id="msg">Ожидание сообщений...</div>
+            <br><button onclick="window.opener.postMessage('Ответ от дочернего окна!', '*')">Ответить родителю</button>
+            <script>
+              window.addEventListener('message', (e) => {
+                document.getElementById('msg').innerText = 'Получено: ' + e.data;
+              });
+            <\/script>
+          </body></html>
+        `);
+      }
+    }
+    function sendMessageToChild2() {
+      if (childWin2 && !childWin2.closed) {
+        childWin2.postMessage('Привет от родительского окна (' + new Date().toLocaleTimeString() + ')', '*');
+      }
+    }
+    window.addEventListener('message', (e) => {
+      document.getElementById('log2').innerText += 'Принято от дочернего окна: ' + e.data + '\n';
+    });
+
+    let childWin3 = null;
+    let timer3 = null;
+    function openChild3() {
+      childWin3 = window.open("", "ChildWindow3", "width=300,height=200");
+      document.getElementById('log3').innerText = 'Окно 3 открыто. Наблюдаем за состоянием...\n';
+      clearInterval(timer3);
+      timer3 = setInterval(() => {
+        if (!childWin3 || childWin3.closed) {
+          document.getElementById('log3').innerText += 'СТАТУС: Дочернее окно было ЗАКРЫТО пользователем.\n';
+          clearInterval(timer3);
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

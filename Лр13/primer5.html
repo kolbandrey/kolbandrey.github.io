@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Характеристики экрана (screen)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.5; }
+    .example-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .metric-value { font-weight: bold; color: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>Объект screen и размеры</h1>
+
+  <div class="example-card">
+    <h3>Полный дашборд параметров монитора и окна</h3>
+    <table>
+      <thead>
+        <tr><th>Параметр</th><th>Свойство JS</th><th>Значение</th></tr>
+      </thead>
+      <tbody id="screenMetricsTable"></tbody>
+    </table>
+  </div>
+
+  <div class="example-card">
+    <h3>Расчет коэффициента масштабирования (Pixel Ratio)</h3>
+    <p id="pixelRatioBox"></p>
+  </div>
+
+  <div class="example-card">
+    <h3>Отслеживание изменения ориентации и размеров окна в реальном времени</h3>
+    <p>Измените размер окна браузера:</p>
+    <div id="liveResizeBox" style="font-family: monospace; padding: 10px; background: #fafafa; border: 1px solid #eee;"></div>
+  </div>
+
+  <script>
+    function renderMetrics() {
+      const metrics = [
+        { name: 'Полная ширина экрана', prop: 'screen.width', val: screen.width + ' px' },
+        { name: 'Полная высота экрана', prop: 'screen.height', val: screen.height + ' px' },
+        { name: 'Доступная ширина (без панелей ОС)', prop: 'screen.availWidth', val: screen.availWidth + ' px' },
+        { name: 'Доступная высота (без панелей ОС)', prop: 'screen.availHeight', val: screen.availHeight + ' px' },
+        { name: 'Глубина цвета (Color Depth)', prop: 'screen.colorDepth', val: screen.colorDepth + ' bit' },
+        { name: 'Глубина пикселя (Pixel Depth)', prop: 'screen.pixelDepth', val: screen.pixelDepth + ' bit' },
+        { name: 'Внутренняя ширина окна (Viewport)', prop: 'window.innerWidth', val: window.innerWidth + ' px' },
+        { name: 'Внутренняя высота окна (Viewport)', prop: 'window.innerHeight', val: window.innerHeight + ' px' }
+      ];
+
+      const tbody = document.getElementById('screenMetricsTable');
+      tbody.innerHTML = metrics.map(m => 
+        `<tr><td>${m.name}</td><td><code>${m.prop}</code></td><td class="metric-value">${m.val}</td></tr>`
+      ).join('');
+    }
+    renderMetrics();
+
+    const ratio = window.devicePixelRatio || 1;
+    document.getElementById('pixelRatioBox').innerHTML = `
+      <strong>window.devicePixelRatio:</strong> ${ratio}<br>
+      <em>${ratio > 1 ? 'Экран с повышенной плотностью пикселей (HiDPI / Retina).' : 'Стандартный экран (100% масштаб).'}
+    `;
+
+    function updateLiveStats() {
+      renderMetrics();
+      const orientation = (screen.orientation && screen.orientation.type) || (window.innerWidth > window.innerHeight ? 'landscape' : 'portrait');
+      document.getElementById('liveResizeBox').innerHTML = `
+        Текущий Viewport: ${window.innerWidth} x ${window.innerHeight}<br>
+        Ориентация: <strong>${orientation}</strong>
+      `;
+    }
+    window.addEventListener('resize', updateLiveStats);
+    updateLiveStats();
+  </script>
+</body>
+</html>

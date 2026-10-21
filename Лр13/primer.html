@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Определение типа устройства</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.5; }
+    .example-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    .alert-banner { padding: 15px; border-radius: 6px; font-weight: bold; margin-top: 10px; }
+    .desktop { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .tablet { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+    .mobile { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+  </style>
+</head>
+<body>
+  <h1>Определение устройств</h1>
+
+  <div class="example-card">
+    <h3>Классификация устройства (screen.width + navigator.userAgent)</h3>
+    <div id="deviceBanner1" class="alert-banner"></div>
+  </div>
+
+
+  <div class="example-card">
+    <h3>Определение сенсорного экрана (Touch capabilities)</h3>
+    <p id="touchInfo"></p>
+  </div>
+
+
+  <div class="example-card">
+    <h3>Проверка с помощью window.matchMedia (Media Queries в JS)</h3>
+    <p id="mediaQueryInfo"></p>
+  </div>
+
+  <script>
+    function detectDevice() {
+      const ua = navigator.userAgent.toLowerCase();
+      const width = screen.width;
+      let type = 'desktop';
+      let label = '🖥️ Десктопный ПК / Ноутбук';
+
+      const isMobileUA = /mobile|android|iphone|ipad|tablet/i.test(ua);
+
+      if (/ipad|tablet/i.test(ua) || (width >= 768 && width <= 1024 && isMobileUA)) {
+        type = 'tablet';
+        label = '📱 Планшет';
+      } else if (isMobileUA || width < 768) {
+        type = 'mobile';
+        label = '📱 Мобильный телефон';
+      }
+
+      const banner = document.getElementById('deviceBanner1');
+      banner.className = `alert-banner ${type}`;
+      banner.innerText = `Определенный тип устройства: ${label} (Ширина экрана: ${width}px)`;
+    }
+    detectDevice();
+
+    const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    document.getElementById('touchInfo').innerHTML = `
+      <strong>Сенсорный ввод:</strong> ${hasTouch ? 'Поддерживается (Touch Screen)' : 'Отсутствует (Мышь/Клавиатура)'}<br>
+      <strong>Макс. точек касания:</strong> ${navigator.maxTouchPoints || 0}
+    `;
+
+    function checkMediaQueries() {
+      const isMobileWidth = window.matchMedia('(max-width: 767px)').matches;
+      const isPointerCoarse = window.matchMedia('(pointer: coarse)').matches;
+
+      document.getElementById('mediaQueryInfo').innerHTML = `
+        <strong>matchMedia (max-width: 767px):</strong> ${isMobileWidth ? 'Да' : 'Нет'}<br>
+        <strong>matchMedia (pointer: coarse - грубый указатель/палец):</strong> ${isPointerCoarse ? 'Да' : 'Нет'}
+      `;
+    }
+    checkMediaQueries();
+    window.addEventListener('resize', checkMediaQueries);
+  </script>
+</body>
+</html>

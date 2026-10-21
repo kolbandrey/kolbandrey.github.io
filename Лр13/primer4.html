@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Управление историей навигации</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.5; }
+    .example-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    button { padding: 8px 16px; cursor: pointer; margin-right: 5px; }
+    .state-tab { display: inline-block; padding: 10px 20px; border: 1px solid #999; margin-right: 5px; background: #eee; cursor: pointer; }
+    .state-tab.active { background: #007bff; color: white; border-color: #007bff; }
+    .content-area { margin-top: 15px; padding: 15px; border: 1px dashed #aaa; min-height: 50px; }
+  </style>
+</head>
+<body>
+  <h1>Объект history</h1>
+  <div class="example-card">
+    <h3>Стандартные методы навигации (back / forward / go)</h3>
+    <button onclick="history.back()">← Назад (history.back)</button>
+    <button onclick="history.forward()">Вперед → (history.forward)</button>
+    <button onclick="history.go(-2)">На 2 шага назад (history.go(-2))</button>
+    <p>Длина истории сессии (<code>history.length</code>): <strong id="histLen"></strong></p>
+  </div>
+
+  <div class="example-card">
+    <h3>Одностраничное приложение (SPA) на pushState и popstate</h3>
+    <div>
+      <span class="state-tab" onclick="switchState('home')" id="tab-home">Главная</span>
+      <span class="state-tab" onclick="switchState('catalog')" id="tab-catalog">Каталог</span>
+      <span class="state-tab" onclick="switchState('profile')" id="tab-profile">Профиль</span>
+    </div>
+    <div id="spaContent" class="content-area"></div>
+  </div>
+
+  <div class="example-card">
+    <h3>Изменение URL без создания новой записи истории (replaceState)</h3>
+    <p>Обновляет параметры текущего URL без записи в историю переход назад.</p>
+    <button onclick="updateQueryParam('theme', 'dark')">Установить theme=dark</button>
+    <button onclick="updateQueryParam('theme', 'light')">Установить theme=light</button>
+    <p>Текущий URL: <code id="currentUrl"></code></p>
+  </div>
+
+  <script>
+    document.getElementById('histLen').innerText = history.length;
+
+    const pages = {
+      home: 'Раздел "Главная": Добро пожаловать на наш сайт!',
+      catalog: 'Раздел "Каталог": Список доступных товаров.',
+      profile: 'Раздел "Профиль": Личные настройки пользователя.'
+    };
+
+    function renderState(page) {
+      document.getElementById('spaContent').innerText = pages[page] || pages.home;
+      document.querySelectorAll('.state-tab').forEach(el => el.classList.remove('active'));
+      const activeTab = document.getElementById(`tab-${page}`);
+      if (activeTab) activeTab.classList.add('active');
+    }
+
+    function switchState(page) {
+      history.pushState({ page: page }, '', `#${page}`);
+      renderState(page);
+    }
+
+    window.addEventListener('popstate', (e) => {
+      if (e.state && e.state.page) {
+        renderState(e.state.page);
+      } else {
+        const hash = location.hash.replace('#', '') || 'home';
+        renderState(hash);
+      }
+    });
+
+    // Инициализация
+    const initialHash = location.hash.replace('#', '') || 'home';
+    renderState(initialHash);
+
+    function updateQueryParam(key, val) {
+      const url = new URL(window.location);
+      url.searchParams.set(key, val);
+      history.replaceState(null, '', url);
+      document.getElementById('currentUrl').innerText = window.location.href;
+    }
+    document.getElementById('currentUrl').innerText = window.location.href;
+  </script>
+</body>
+</html>

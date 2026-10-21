@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Интерфейсные события JavaScript — демонстрация</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0 20px 80px;
+    background: #fafafa;
+    color: #222;
+    line-height: 1.5;
+  }
+  h1 {
+    text-align: center;
+    padding: 30px 0 10px;
+    margin: 0 0 10px;
+  }
+  h2 {
+    border-bottom: 2px solid #2196f3;
+    padding-bottom: 6px;
+    margin-top: 50px;
+    color: #1565c0;
+  }
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .demo {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  button {
+    padding: 8px 14px;
+    border: 1px solid #1976d2;
+    background: #2196f3;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 4px 4px 4px 0;
+  }
+  button:hover { background: #1976d2; }
+  input {
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 260px;
+  }
+  code, .mono {
+    font-family: Consolas, Menlo, monospace;
+    font-size: 13px;
+  }
+  .out {
+    background: #f5f5f5;
+    border-left: 4px solid #4caf50;
+    padding: 8px 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+    min-height: 20px;
+    font-family: Consolas, Menlo, monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* --- Mouse --- */
+  .mouse-box {
+    width: 320px;
+    padding: 20px;
+    border: 2px solid #999;
+    border-radius: 8px;
+    transition: 0.3s;
+    user-select: none;
+  }
+  .mouse-box.active {
+    background: #e3f2fd;
+    border-color: #2196f3;
+  }
+
+  /* --- Keyboard --- */
+  #moveDot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e91e63;
+    position: relative;
+    transition: transform 0.1s;
+    margin-top: 10px;
+  }
+  .kbd-hint { font-size: 13px; color: #666; }
+
+  /* --- DnD --- */
+  .dnd-wrap { display: flex; gap: 20px; flex-wrap: wrap; }
+  .dnd-column {
+    min-height: 140px;
+    flex: 1 1 200px;
+    padding: 10px;
+    border: 2px dashed #999;
+    border-radius: 8px;
+    background: #fdfdfd;
+  }
+  .dnd-column h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .dnd-item {
+    padding: 10px 12px;
+    margin: 6px 0;
+    background: #fff3e0;
+    border: 1px solid #ff9800;
+    border-radius: 6px;
+    cursor: grab;
+  }
+  .dnd-item.dragging { opacity: 0.4; }
+  .dnd-column.over {
+    background: #e8f5e9;
+    border-color: #4caf50;
+  }
+
+  /* --- Pointer --- */
+  .pointer-area {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #f5f5f5;
+    border: 2px solid #666;
+    border-radius: 8px;
+    overflow: hidden;
+    touch-action: none;
+    cursor: crosshair;
+  }
+  #pointerDot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #3f51b5;
+    transform: translate(-50%, -50%);
+    display: none;
+    pointer-events: none;
+  }
+
+  /* --- Scroll --- */
+  #scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0;
+    background: #4caf50;
+    z-index: 9999;
+    transition: width 0.05s linear;
+  }
+  #stickyHeader {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 12px 20px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    transition: 0.3s;
+    margin: 0 -20px;
+  }
+  #stickyHeader.scrolled {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  #scrollTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    padding: 0;
+    z-index: 200;
+  }
+  .scroll-spacer {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-style: italic;
+  }
+
+  /* --- Touch --- */
+  .touch-zone {
+    width: 100%;
+    height: 180px;
+    background: #e8f5e9;
+    border: 2px solid #4caf50;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2e7d32;
+    font-weight: 600;
+    touch-action: pan-y;
+    user-select: none;
+  }
+
+  /* --- Timer --- */
+  #clock {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1565c0;
+    font-family: Consolas, Menlo, monospace;
+    margin: 0 0 10px;
+  }
+
+  table.props {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  table.props th, table.props td {
+    text-align: left;
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+  }
+  table.props th { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<div id="scrollProgress"></div>
+
+<header id="stickyHeader">
+  <strong>Демонстрация интерфейсных событий JS</strong>
+</header>
+
+<h1>Интерфейсные события JavaScript</h1>
+
+<section>
+
+  <!-- ======================= 0 ======================= -->
+  <h2>0. Способы назначения обработчиков</h2>
+  <div class="demo">
+    <p class="kbd-hint">Три способа + удаление обработчика + делегирование.</p>
+    <button id="btn1">onclick = …</button>
+    <button id="btn2">addEventListener</button>
+    <button id="btn3">Добавить одноразовый</button>
+    <button id="btn4">Удалить обработчик у «addEventListener»</button>
+
+    <ul class="list" style="margin-top:15px;">
+      <li class="list-item">Пункт A</li>
+      <li class="list-item">Пункт B</li>
+      <li class="list-item">Пункт C</li>
+    </ul>
+
+    <div class="out" id="out0">Здесь появятся логи…</div>
+  </div>
+
+  <!-- ======================= 1 ======================= -->
+  <h2>1. События мыши</h2>
+  <div class="demo">
+    <div id="mouseBox" class="mouse-box">
+      <button id="mouseBtn">Кликни меня</button>
+      <p id="mouseInfo" style="margin-bottom:0;">Наведи курсор или кликни</p>
+    </div>
+    <p class="kbd-hint">
+      Реализованы: <code>click</code>, <code>mouseenter</code>, <code>mouseleave</code>,
+      <code>mousemove</code>, <code>contextmenu</code> (правый клик перехвачен).
+    </p>
+  </div>
+
+  <!-- ======================= 2 ======================= -->
+  <h2>2. События клавиатуры</h2>
+  <div class="demo">
+    <input id="keyInput" placeholder="Нажмите клавиши…">
+    <p class="kbd-hint">Стрелки двигают розовую точку. Ctrl+S перехватывается.</p>
+    <div id="moveDot"></div>
+    <div class="out" id="keyInfo">keydown / keyup: —</div>
+  </div>
+
+  <!-- ======================= 3 ======================= -->
+  <h2>3. Drag &amp; Drop</h2>
+  <div class="demo">
+    <div class="dnd-wrap">
+      <div class="dnd-column" id="todo">
+        <h3>To Do</h3>
+        <div class="dnd-item" draggable="true" id="item1">Карточка 1</div>
+        <div class="dnd-item" draggable="true" id="item2">Карточка 2</div>
+        <div class="dnd-item" draggable="true" id="item3">Карточка 3</div>
+      </div>
+      <div class="dnd-column" id="done">
+        <h3>Done</h3>
+      </div>
+    </div>
+    <p class="kbd-hint">Перетащите карточку в правую колонку.</p>
+  </div>
+
+  <!-- ======================= 4 ======================= -->
+  <h2>4. Pointer Events</h2>
+  <div class="demo">
+    <div id="pointerArea" class="pointer-area">
+      <div id="pointerDot"></div>
+    </div>
+    <div class="out" id="pointerInfo">pointer-событие: —</div>
+  </div>
+
+  <!-- ======================= 5 ======================= -->
+  <h2>5. События прокрутки</h2>
+  <div class="demo">
+    <p>Прокрутите страницу — сверху растёт полоса прогресса, появляется кнопка «наверх».</p>
+    <div class="out" id="scrollInfo">scrollY = 0</div>
+    <div class="scroll-spacer">↓ прокрутите вниз ↓</div>
+  </div>
+
+  <!-- ======================= 6 ======================= -->
+  <h2>6. Сенсорные события (Touch Events)</h2>
+  <div class="demo">
+    <div id="touchZone" class="touch-zone">Свайпните здесь (на телефоне)</div>
+    <div class="out" id="touchInfo">touch-событие: —</div>
+    <p class="kbd-hint">В Chrome DevTools включите <em>Toggle device toolbar</em> для эмуляции.</p>
+  </div>
+
+  <!-- ======================= 7 ======================= -->
+  <h2>7. События таймера</h2>
+  <div class="demo">
+    <p id="clock">--:--:--</p>
+    <button id="startTimer">Старт</button>
+    <button id="stopTimer">Стоп</button>
+    <button id="resetTimer">Сброс</button>
+    <div class="out" id="timerInfo">Прошло: 0 с</div>
+  </div>
+
+</section>
+
+<div class="scroll-spacer">Конец страницы</div>
+
+<button id="scrollTopBtn" hidden title="Наверх">↑</button>
+
+<script>
+/* ============================================================
+   Общие помощники
+   ============================================================ */
+const $ = (sel) => document.querySelector(sel);
+
+function log(el, text) {
+  const out = typeof el === 'string' ? document.getElementById(el) : el;
+  if (out) out.textContent = text;
+}
+
+/* ============================================================
+   0. Способы назначения обработчиков
+   ============================================================ */
+const out0 = $('#out0');
+const logs = [];
+function pushLog(msg) {
+  logs.push(msg);
+  if (logs.length > 6) logs.shift();
+  out0.textContent = logs.join('\n');
+}
+
+// 1) через свойство
+const btn1 = $('#btn1');
+btn1.onclick = (e) => pushLog(`onclick-свойство: type=${e.type}, target=#${e.target.id}`);
+
+// 2) через addEventListener
+const btn2 = $('#btn2');
+function btn2Handler(e) {
+  pushLog(`addEventListener: type=${e.type}`);
+}
+btn2.addEventListener('click', btn2Handler);
+
+// 3) одноразовый
+$('#btn3').addEventListener('click', () => {
+  pushLog('Одноразовый обработчик сработал и удалён');
+}, { once: true });
+
+// 4) удаление
+$('#btn4').addEventListener('click', () => {
+  btn2.removeEventListener('click', btn2Handler);
+  pushLog('Обработчик у #btn2 удалён');
+});
+
+// 5) делегирование
+$('.list').addEventListener('click', (e) => {
+  if (e.target.matches('.list-item')) {
+    pushLog(`Делегирование: клик по «${e.target.textContent}»`);
+  }
+});
+
+/* ============================================================
+   1. События мыши
+   ============================================================ */
+const box = $('#mouseBox');
+const mouseBtn = $('#mouseBtn');
+const mouseInfo = $('#mouseInfo');
+let clicks = 0;
+
+mouseBtn.addEventListener('click', (e) => {
+  clicks++;
+  mouseInfo.textContent = `Кликов: ${clicks}. Координаты: ${Math.round(e.clientX)}, ${Math.round(e.clientY)}`;
+});
+
+box.addEventListener('mouseenter', () => {
+  box.classList.add('active');
+  mouseInfo.textContent = 'Курсор вошёл в блок';
+});
+
+box.addEventListener('mouseleave', () => {
+  box.classList.remove('active');
+  mouseInfo.textContent = 'Курсор вышел из блока';
+});
+
+box.addEventListener('mousemove', (e) => {
+  const r = box.getBoundingClientRect();
+  const x = Math.round(e.clientX - r.left);
+  const y = Math.round(e.clientY - r.top);
+  mouseInfo.textContent = `Внутри блока: x=${x}, y=${y}`;
+});
+
+box.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+  mouseInfo.textContent = 'Правый клик перехвачен (своё контекстное меню)';
+});
+
+/* ============================================================
+   2. События клавиатуры
+   ============================================================ */
+const keyInfo = $('#keyInfo');
+const moveDot = $('#moveDot');
+const keyInput = $('#keyInput');
+
+let px = 0, py = 0;
+
+document.addEventListener('keydown', (e) => {
+  keyInfo.textContent =
+    `keydown → key=${e.key}, code=${e.code}, ctrl=${e.ctrlKey}, shift=${e.shiftKey}, alt=${e.altKey}`;
+
+  switch (e.key) {
+    case 'ArrowRight': px += 10; e.preventDefault(); break;
+    case 'ArrowLeft':  px -= 10; e.preventDefault(); break;
+    case 'ArrowUp':    py -= 10; e.preventDefault(); break;
+    case 'ArrowDown':  py += 10; e.preventDefault(); break;
+  }
+
+  moveDot.style.transform = `translate(${px}px, ${py}px)`;
+
+  if (e.ctrlKey && e.key.toLowerCase() === 's') {
+    e.preventDefault();
+    keyInfo.textContent = 'Перехвачен Ctrl+S';
+  }
+});
+
+keyInput.addEventListener('keyup', (e) => {
+  keyInfo.textContent = `keyup → key=${e.key}, значение поля: "${e.target.value}"`;
+});
+
+/* ============================================================
+   3. Drag & Drop
+   ============================================================ */
+const items = document.querySelectorAll('.dnd-item');
+const columns = document.querySelectorAll('.dnd-column');
+let dragged = null;
+
+items.forEach((item) => {
+  item.addEventListener('dragstart', (e) => {
+    dragged = item;
+    e.dataTransfer.setData('text/plain', item.id);
+    e.dataTransfer.effectAllowed = 'move';
+    item.classList.add('dragging');
+  });
+
+  item.addEventListener('dragend', () => {
+    item.classList.remove('dragging');
+    dragged = null;
+  });
+});
+
+columns.forEach((col) => {
+  col.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    col.classList.add('over');
+  });
+
+  col.addEventListener('dragleave', () => {
+    col.classList.remove('over');
+  });
+
+  col.addEventListener('drop', (e) => {
+    e.preventDefault();
+    col.classList.remove('over');
+    const id = e.dataTransfer.getData('text/plain');
+    const el = document.getElementById(id) || dragged;
+    if (el) col.appendChild(el);
+  });
+});
+
+/* ============================================================
+   4. Pointer Events
+   ============================================================ */
+const pArea = $('#pointerArea');
+const pDot  = $('#pointerDot');
+const pInfo = $('#pointerInfo');
+
+function movePointerDot(e) {
+  const r = pArea.getBoundingClientRect();
+  pDot.style.left = (e.clientX - r.left) + 'px';
+  pDot.style.top  = (e.clientY - r.top)  + 'px';
+}
+
+pArea.addEventListener('pointerdown', (e) => {
+  pArea.setPointerCapture(e.pointerId);
+  pDot.style.display = 'block';
+  movePointerDot(e);
+  pInfo.textContent = `pointerdown → id=${e.pointerId}, type=${e.pointerType}, pressure=${e.pressure}`;
+});
+
+pArea.addEventListener('pointermove', (e) => {
+  if (e.pointerType === 'mouse' && e.buttons === 0) return;
+  movePointerDot(e);
+  pInfo.textContent = `pointermove → id=${e.pointerId}, x=${Math.round(e.clientX)}, y=${Math.round(e.clientY)}`;
+});
+
+pArea.addEventListener('pointerup', (e) => {
+  pArea.releasePointerCapture(e.pointerId);
+  pInfo.textContent = `pointerup → id=${e.pointerId}`;
+});
+
+pArea.addEventListener('pointercancel', (e) => {
+  pInfo.textContent = `pointercancel → id=${e.pointerId}`;
+});
+
+/* ============================================================
+   5. Прокрутка
+   ============================================================ */
+const progress   = $('#scrollProgress');
+const header     = $('#stickyHeader');
+const btnTop     = $('#scrollTopBtn');
+const scrollInfo = $('#scrollInfo');
+
+window.addEventListener('scroll', () => {
+  const y  = window.scrollY;
+  const dh = document.documentElement.scrollHeight - window.innerHeight;
+  const p  = dh > 0 ? (y / dh) * 100 : 0;
+
+  progress.style.width = p + '%';
+  header.classList.toggle('scrolled', y > 50);
+  btnTop.hidden = y < 300;
+  scrollInfo.textContent = `scrollY = ${Math.round(y)} (${p.toFixed(1)}%)`;
+}, { passive: true });
+
+btnTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ============================================================
+   6. Touch Events
+   ============================================================ */
+const tZone = $('#touchZone');
+const tInfo = $('#touchInfo');
+let tsx = 0, tsy = 0;
+
+tZone.addEventListener('touchstart', (e) => {
+  const t = e.changedTouches[0];
+  tsx = t.clientX;
+  tsy = t.clientY;
+  tInfo.textContent = `touchstart → x=${Math.round(t.clientX)}, y=${Math.round(t.clientY)}`;
+}, { passive: true });
+
+tZone.addEventListener('touchmove', (e) => {
+  const t = e.changedTouches[0];
+  const dx = Math.round(t.clientX - tsx);
+  const dy = Math.round(t.clientY - tsy);
+  tInfo.textContent = `touchmove → dx=${dx}, dy=${dy}`;
+}, { passive: true });
+
+tZone.addEventListener('touchend', (e) => {
+  const t = e.changedTouches[0];
+  const dx = t.clientX - tsx;
+  const dy = t.clientY - tsy;
+
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+    tInfo.textContent = dx > 0 ? 'Свайп вправо →' : '← Свайп влево';
+  } else if (Math.abs(dy) > 50) {
+    tInfo.textContent = dy > 0 ? 'Свайп вниз ↓' : 'Свайп вверх ↑';
+  } else {
+    tInfo.textContent = `Тап/касание в (${Math.round(t.clientX)}, ${Math.round(t.clientY)})`;
+  }
+});
+
+/* ============================================================
+   7. Таймеры
+   ============================================================ */
+const clockEl   = $('#clock');
+const timerInfo = $('#timerInfo');
+let intervalId = null;
+let seconds    = 0;
+
+function updateClock() {
+  clockEl.textContent = new Date().toLocaleTimeString('ru-RU');
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+$('#startTimer').addEventListener('click', () => {
+  if (intervalId !== null) return;
+  intervalId = setInterval(() => {
+    seconds++;
+    timerInfo.textContent = `Прошло: ${seconds} с`;
+  }, 1000);
+});
+
+$('#stopTimer').addEventListener('click', () => {
+  clearInterval(intervalId);
+  intervalId = null;
+});
+
+$('#resetTimer').addEventListener('click', () => {
+  clearInterval(intervalId);
+  intervalId = null;
+  seconds = 0;
+  timerInfo.textContent = 'Прошло: 0 с';
+});
+
+// Демонстрация setTimeout
+setTimeout(() => {
+  console.log('setTimeout: прошло 3 секунды с загрузки страницы');
+}, 3000);
+</script>
+</body>
+</html>

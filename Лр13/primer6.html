@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Навигация и GET-параметры (location)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.5; }
+    .example-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    button { padding: 8px 16px; cursor: pointer; margin-right: 5px; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 10px; }
+    .product-card { border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #f9f9f9; }
+    .badge { background: #17a2b8; color: white; padding: 2px 6px; border-radius: 3px; font-size: 0.8em; }
+  </style>
+</head>
+<body>
+  <h1>Объект location и GET-параметры</h1>
+
+  <div class="example-card">
+    <h3>Разбор элементов URL через window.location</h3>
+    <div id="locationDetails" style="font-family: monospace;"></div>
+  </div>
+
+  <div class="example-card">
+    <h3>Каталог товаров с фильтрацией через URLSearchParams</h3>
+    <p>Выберите категорию для фильтрации (меняет GET-параметры без перезагрузки):</p>
+    <button onclick="setFilter('category', 'all')">Все товары</button>
+    <button onclick="setFilter('category', 'phones')">Телефоны</button>
+    <button onclick="setFilter('category', 'laptops')">Ноутбуки</button>
+    
+    <div id="productList" class="product-grid"></div>
+  </div>
+  <div class="example-card">
+    <h3>Безопасное перенаправление (location.assign vs location.replace)</h3>
+    <button onclick="window.location.assign('https://example.com')">assign() (С записью в историю)</button>
+    <button onclick="window.location.replace('https://example.com')">replace() (Замена текущей страницы)</button>
+  </div>
+
+  <script>
+    document.getElementById('locationDetails').innerHTML = `
+      <strong>href:</strong> ${location.href}<br>
+      <strong>protocol:</strong> ${location.protocol}<br>
+      <strong>host:</strong> ${location.host}<br>
+      <strong>pathname:</strong> ${location.pathname}<br>
+      <strong>search (GET):</strong> ${location.search || '(пусто)'}<br>
+      <strong>hash:</strong> ${location.hash || '(пусто)'}
+    `;
+
+    const products = [
+      { id: 1, name: 'iPhone 15', category: 'phones', price: '$999' },
+      { id: 2, name: 'Samsung Galaxy S24', category: 'phones', price: '$899' },
+      { id: 3, name: 'MacBook Pro 16', category: 'laptops', price: '$2499' },
+      { id: 4, name: 'ASUS ROG Strix', category: 'laptops', price: '$1799' }
+    ];
+
+    function renderProducts() {
+      const params = new URLSearchParams(window.location.search);
+      const catFilter = params.get('category') || 'all';
+
+      const filtered = catFilter === 'all' 
+        ? products 
+        : products.filter(p => p.category === catFilter);
+
+      const container = document.getElementById('productList');
+      if (filtered.length === 0) {
+        container.innerHTML = '<p>Товары не найдены</p>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <strong>${p.name}</strong><br>
+          <span class="badge">${p.category}</span>
+          <p style="margin: 5px 0 0 0; font-weight: bold;">${p.price}</p>
+        </div>
+      `).join('');
+    }
+
+    function setFilter(key, val) {
+      const url = new URL(window.location);
+      if (val === 'all') {
+        url.searchParams.delete(key);
+      } else {
+        url.searchParams.set(key, val);
+      }
+      history.pushState(null, '', url);
+      renderProducts();
+      document.getElementById('locationDetails').innerHTML = `
+        <strong>href:</strong> ${location.href}<br>
+        <strong>protocol:</strong> ${location.protocol}<br>
+        <strong>host:</strong> ${location.host}<br>
+        <strong>pathname:</strong> ${location.pathname}<br>
+        <strong>search (GET):</strong> ${location.search || '(пусто)'}<br>
+        <strong>hash:</strong> ${location.hash || '(пусто)'}
+      `;
+    }
+
+    window.addEventListener('popstate', renderProducts);
+    renderProducts();
+  </script>
+</body>
+</html>

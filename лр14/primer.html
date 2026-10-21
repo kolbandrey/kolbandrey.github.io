@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Демонстрация работы с DOM в JavaScript</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #34495e;
+      border-bottom: 2px solid #ecf0f1;
+      padding-bottom: 8px;
+    }
+    .demo-area {
+      min-height: 80px;
+      background: #f8f9fa;
+      border: 1px dashed #ced4da;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    /* Стили для динамических блоков */
+    .dynamic-block {
+      background-color: #2ecc71;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      animation: fadeIn 0.3s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Манипуляция DOM</h1>
+
+  <div class="container">
+
+    <!-- 1. Изменение текста -->
+    <div class="card">
+      <div>
+        <h3>1. Изменить текст на странице</h3>
+        <p>Метод: <code>element.textContent</code></p>
+        <div class="demo-area">
+          <p id="textTarget" style="font-size: 18px; font-weight: bold; margin: 0;">Исходный текст</p>
+        </div>
+      </div>
+      <button id="changeTextBtn">Изменить текст</button>
+    </div>
+
+    <!-- 2. Добавление нового блока -->
+    <div class="card">
+      <div>
+        <h3>2. Добавить новый блок</h3>
+        <p>Методы: <code>document.createElement</code> + <code>appendChild</code></p>
+        <div class="demo-area" id="blockContainer">
+          <!-- Сюда будут добавляться элементы -->
+        </div>
+      </div>
+      <button id="addBlockBtn">Добавить блок</button>
+    </div>
+
+    <!-- 3. Удаление элемента -->
+    <div class="card">
+      <div>
+        <h3>3. Удалить элемент</h3>
+        <p>Методы: <code>parentElement.removeChild(child)</code> или <code>element.remove()</code></p>
+        <div class="demo-area" id="deleteContainer">
+          <div class="dynamic-block" id="deletableBlock" style="background-color: #e74c3c;">
+            Удалите меня!
+          </div>
+        </div>
+      </div>
+      <button id="deleteBlockBtn">Удалить элемент</button>
+    </div>
+
+    <!-- 4. Изменение стиля -->
+    <div class="card">
+      <div>
+        <h3>4. Изменить стиль</h3>
+        <p>Свойство: <code>element.style.[property]</code></p>
+        <div class="demo-area">
+          <div id="styleBox" style="width: 60px; height: 60px; background-color: #9b59b6; border-radius: 4px; transition: all 0.3s;"></div>
+        </div>
+      </div>
+      <button id="changeStyleBtn">Изменить цвет и размер</button>
+    </div>
+
+    <!-- 5. Регирование на действия пользователя -->
+    <div class="card" style="grid-column: 1 / -1;">
+      <div>
+        <h3>5. Реагировать на действия пользователя</h3>
+        <p>Метод: <code>element.addEventListener('event', handler)</code></p>
+        <div class="demo-area" id="interactiveZone" style="cursor: pointer; user-select: none;">
+          <p id="eventLog" style="margin: 0; font-weight: bold;">Кликните или наведите курсор на эту область!</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ========================================================
+    // 1. Изменить текст на странице
+    // ========================================================
+    const textTarget = document.getElementById('textTarget');
+    const changeTextBtn = document.getElementById('changeTextBtn');
+    let textState = false;
+
+    changeTextBtn.addEventListener('click', () => {
+      textState = !textState;
+      // Используем textContent для безопасного изменения текста элемента
+      textTarget.textContent = textState 
+        ? "Текст успешно изменен! 🎉" 
+        : "Исходный текст";
+    });
+
+    // ========================================================
+    // 2. Добавить новый блок
+    // ========================================================
+    const blockContainer = document.getElementById('blockContainer');
+    const addBlockBtn = document.getElementById('addBlockBtn');
+    let blockCounter = 1;
+
+    addBlockBtn.addEventListener('click', () => {
+      // Создаем новый HTML-элемент <div>
+      const newBlock = document.createElement('div');
+      newBlock.className = 'dynamic-block';
+      newBlock.textContent = `Блок #${blockCounter++}`;
+
+      // Вставляем созданный элемент в контейнер-родитель
+      blockContainer.appendChild(newBlock);
+    });
+
+    // ========================================================
+    // 3. Удалить элемент
+    // ========================================================
+    const deleteContainer = document.getElementById('deleteContainer');
+    const deleteBlockBtn = document.getElementById('deleteBlockBtn');
+
+    deleteBlockBtn.addEventListener('click', () => {
+      const target = document.getElementById('deletableBlock');
+      if (target) {
+        // Способ 1: через родительский элемент
+        deleteContainer.removeChild(target);
+        
+        // Способ 2 (современный): target.remove();
+        deleteBlockBtn.disabled = true;
+        deleteBlockBtn.textContent = 'Элемент удален';
+      }
+    });
+
+    // ========================================================
+    // 4. Изменить стиль
+    // ========================================================
+    const styleBox = document.getElementById('styleBox');
+    const changeStyleBtn = document.getElementById('changeStyleBtn');
+    let isStyled = false;
+
+    changeStyleBtn.addEventListener('click', () => {
+      isStyled = !isStyled;
+      if (isStyled) {
+        // Прямое управление свойствами стиля из JS
+        styleBox.style.backgroundColor = '#f1c40f';
+        styleBox.style.width = '100px';
+        styleBox.style.height = '40px';
+        styleBox.style.borderRadius = '20px';
+      } else {
+        styleBox.style.backgroundColor = '#9b59b6';
+        styleBox.style.width = '60px';
+        styleBox.style.height = '60px';
+        styleBox.style.borderRadius = '4px';
+      }
+    });
+
+    // ========================================================
+    // 5. Реагировать на действия пользователя
+    // ========================================================
+    const interactiveZone = document.getElementById('interactiveZone');
+    const eventLog = document.getElementById('eventLog');
+
+    // Навешиваем слушатель события "click"
+    interactiveZone.addEventListener('click', () => {
+      interactiveZone.style.backgroundColor = '#e8f8f5';
+      eventLog.textContent = '👍 Зафиксирован клик левой кнопкой мыши!';
+    });
+
+    // Навешиваем слушатель события "mouseenter" (наведение мыши)
+    interactiveZone.addEventListener('mouseenter', () => {
+      interactiveZone.style.borderColor = '#2ecc71';
+    });
+
+    // Навешиваем слушатель события "mouseleave" (уход курсора)
+    interactiveZone.addEventListener('mouseleave', () => {
+      interactiveZone.style.borderColor = '#ced4da';
+      interactiveZone.style.backgroundColor = '#f8f9fa';
+      eventLog.textContent = 'Кликните или наведите курсор на эту область!';
+    });
+  </script>
+</body>
+</html>

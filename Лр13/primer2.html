@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Информация о браузере (navigator)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.5; }
+    .example-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    .info-box { background: #eef7ff; border-left: 4px solid #007bff; padding: 10px; margin-top: 10px; font-family: monospace; }
+    .status-online { color: green; font-weight: bold; }
+    .status-offline { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Объект navigator</h1>
+
+  <div class="example-card">
+    <h3>Полный анализ UserAgent, платформы и локали</h3>
+    <div id="info1" class="info-box"></div>
+  </div>
+
+  <div class="example-card">
+    <h3>Проверка состояния сети (Online/Offline) и подключения</h3>
+    <div id="info2" class="info-box"></div>
+  </div>
+
+  <div class="example-card">
+    <h3>Определение аппаратных возможностей (CPU и Память)</h3>
+    <div id="info3" class="info-box"></div>
+  </div>
+
+  <script>
+    document.getElementById('info1').innerHTML = `
+      <strong>User-Agent:</strong> ${navigator.userAgent}<br>
+      <strong>Платформа:</strong> ${navigator.platform}<br>
+      <strong>Язык браузера:</strong> ${navigator.language}<br>
+      <strong>Cookie включены:</strong> ${navigator.cookieEnabled ? 'Да' : 'Нет'}
+    `;
+
+    function updateOnlineStatus() {
+      const isOnline = navigator.onLine;
+      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      let connType = connection ? connection.effectiveType : 'Не определен';
+
+      document.getElementById('info2').innerHTML = `
+        <strong>Статус сети:</strong> <span class="${isOnline ? 'status-online' : 'status-offline'}">${isOnline ? 'ONLINE' : 'OFFLINE'}</span><br>
+        <strong>Тип соединения (Network API):</strong> ${connType}
+      `;
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
+  
+    const cores = navigator.hardwareConcurrency || 'Не поддерживается';
+    const ram = navigator.deviceMemory ? `~${navigator.deviceMemory} ГБ` : 'Не поддерживается';
+    document.getElementById('info3').innerHTML = `
+      <strong>Количество ядер процессора:</strong> ${cores}<br>
+      <strong>Примерный объем ОЗУ:</strong> ${ram}
+    `;
+  </script>
+</body>
+</html>

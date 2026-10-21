@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таймеры и управление окном</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; line-height: 1.5; }
+    .example-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    button { padding: 8px 16px; cursor: pointer; margin-right: 5px; }
+    .timer-display { font-size: 1.5em; font-weight: bold; color: #2c3e50; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Объект window и таймеры</h1>
+
+  <div class="example-card">
+    <h3>Навигация и перезагрузка страницы</h3>
+    <button onclick="window.location.href='https://ya.ru'">Перейти на Яндекс</button>
+    <button onclick="window.location.reload()">Обновить страницу</button>
+  </div>
+
+  <div class="example-card">
+    <h3>Счетчик времени работы на странице с управлением</h3>
+    <div class="timer-display" id="timeCounter">00:00:00</div>
+    <button onclick="pauseTimer()">Пауза</button>
+    <button onclick="resumeTimer()">Возобновить</button>
+    <button onclick="resetTimer()">Сброс</button>
+  </div>
+
+  <div class="example-card">
+    <h3>Отложенное уведомление с возможностью отмены (setTimeout)</h3>
+    <button onclick="startDelayedNotice()">Запустить таймер (5 сек)</button>
+    <button onclick="cancelDelayedNotice()">Отменить</button>
+    <div id="noticeLog" style="margin-top: 10px; color: #d9534f;"></div>
+  </div>
+
+  <script>
+    let secondsElapsed = 0;
+    let intervalId = null;
+
+    function formatTime(sec) {
+      const hrs = Math.floor(sec / 3600).toString().padStart(2, '0');
+      const mins = Math.floor((sec % 3600) / 60).toString().padStart(2, '0');
+      const secs = (sec % 60).toString().padStart(2, '0');
+      return `${hrs}:${mins}:${secs}`;
+    }
+
+    function startTimer() {
+      if (!intervalId) {
+        intervalId = setInterval(() => {
+          secondsElapsed++;
+          document.getElementById('timeCounter').innerText = formatTime(secondsElapsed);
+        }, 1000);
+      }
+    }
+
+    function pauseTimer() {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+
+    function resumeTimer() {
+      startTimer();
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      secondsElapsed = 0;
+      document.getElementById('timeCounter').innerText = formatTime(0);
+      startTimer();
+    }
+
+    // Автостарт счетчика при загрузке
+    startTimer();
+
+    let timeoutId = null;
+    function startDelayedNotice() {
+      const log = document.getElementById('noticeLog');
+      log.innerText = 'Таймер запущен. Ожидание 5 секунд...';
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        log.innerText = '🔔 Внимание! Прошло 5 секунд.';
+      }, 5000);
+    }
+
+    function cancelDelayedNotice() {
+      clearTimeout(timeoutId);
+      document.getElementById('noticeLog').innerText = '❌ Выполнение отменено.';
+    }
+  </script>
+</body>
+</html>
